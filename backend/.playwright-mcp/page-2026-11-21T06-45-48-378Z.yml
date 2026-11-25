@@ -1,0 +1,661 @@
+- generic [ref=e2]:
+  - navigation "Main Kaggle page navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - button "Navigation menu" [ref=e7] [cursor=pointer]: menu
+      - link "Skip to content" [ref=e8] [cursor=pointer]:
+        - /url: "#site-content"
+        - text: Skip tocontent
+    - button "Create on Kaggle" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]:
+        - generic:
+          - generic:
+            - paragraph: Create
+    - generic [ref=e16]:
+      - list [ref=e17]:
+        - listitem "Home List Item" [ref=e18]:
+          - link "Home" [ref=e20] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e25]: Home
+        - listitem "Competitions List Item" [ref=e26]:
+          - link "Competitions" [ref=e28] [cursor=pointer]:
+            - /url: /competitions
+            - paragraph [ref=e33]: Competitions
+        - listitem "Benchmarks List Item" [ref=e34]:
+          - link "Benchmarks" [ref=e36] [cursor=pointer]:
+            - /url: /benchmarks
+            - paragraph [ref=e41]: Benchmarks
+        - listitem "Arenas List Item" [ref=e42]:
+          - link "Arenas" [ref=e44] [cursor=pointer]:
+            - /url: /arenas
+            - paragraph [ref=e49]: Arenas
+        - listitem "Game Arena List Item" [ref=e50]:
+          - link "Game Arena" [ref=e52] [cursor=pointer]:
+            - /url: /game-arena
+            - paragraph [ref=e57]: Game Arena
+      - list [ref=e58]:
+        - listitem "Data Hub List Item" [ref=e59]:
+          - link "Data Hub" [ref=e61] [cursor=pointer]:
+            - /url: "#"
+            - paragraph [ref=e66]: Data Hub
+      - list [ref=e67]:
+        - listitem "More on Kaggle List Item" [ref=e68]:
+          - link "More on Kaggle" [ref=e70] [cursor=pointer]:
+            - /url: "#"
+            - paragraph [ref=e75]: More
+  - navigation "Main menu, search and your account" [ref=e77]:
+    - generic [ref=e78]:
+      - generic [ref=e82]:
+        - textbox "Search" [ref=e84]
+        - group [aria-hidden]
+      - generic [ref=e86]:
+        - link [ref=e87] [cursor=pointer]:
+          - /url: /account/login?phase=startSignInTab&returnUrl=%2Fcompetitions%2Fphysical-engineerings-last-exam
+          - button "Login" [ref=e88]
+        - link [ref=e90] [cursor=pointer]:
+          - /url: /account/login?phase=startRegisterTab&returnUrl=%2Fcompetitions%2Fphysical-engineerings-last-exam
+          - button "Sign Up" [ref=e91]
+  - main [ref=e93]:
+    - generic [ref=e96]:
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - link "Google's profile" [ref=e100] [cursor=pointer]:
+            - /url: /organizations/google
+            - generic "Google" [ref=e101]
+          - generic [ref=e105]:
+            - link "Go to profile for Google" [ref=e108] [cursor=pointer]:
+              - /url: /organizations/google
+              - text: Google
+            - generic [ref=e109]: · Featured Hackathon · 2 months to go
+          - generic [ref=e110]:
+            - button "Join Hackathon" [ref=e112] [cursor=pointer]
+            - button "Competition options menu collapsed" [ref=e115] [cursor=pointer]: more_horiz
+        - generic [ref=e117]:
+          - heading "Google - Agent Harness on Physical-Engineering's Last Exam" [level=1] [ref=e118]
+          - paragraph [ref=e120]: Build autonomous agent harnesses to solve real-world structural, civil, electrical, and mechanical engineering tasks
+      - generic [ref=e124]:
+        - tablist [ref=e131]:
+          - tab "Overview, 1 of 5" [selected] [ref=e132] [cursor=pointer]:
+            - generic [ref=e133]: Overview
+          - tab "Writeups, 2 of 5" [ref=e134] [cursor=pointer]:
+            - generic [ref=e135]: Writeups
+          - tab "Code, 3 of 5" [ref=e136] [cursor=pointer]:
+            - generic [ref=e137]: Code
+          - tab "Discussion, 4 of 5" [ref=e138] [cursor=pointer]:
+            - generic [ref=e139]: Discussion
+          - tab "Rules, 5 of 5" [ref=e140] [cursor=pointer]:
+            - generic [ref=e141]: Rules
+        - separator [ref=e143]
+      - generic [ref=e145]:
+        - generic [ref=e146]:
+          - generic [ref=e147]:
+            - heading "Overview" [level=2] [ref=e151]
+            - paragraph [ref=e154]:
+              - text: In this competition, you will build an open-source autonomous agent harness, pair it with one of 8 Google-sponsored foundation models, and tackle
+              - strong [ref=e155]: Physical-Engineering's Last Exam (PLE)
+              - text: —
+              - link "a benchmark (opens in a new tab)" [ref=e156] [cursor=pointer]:
+                - /url: https://ple-bench.com/
+                - text: a benchmark
+              - text: of 85 expert-reviewed, long-horizon tasks across structural, civil, electrical, and mechanical engineering.
+          - generic [ref=e160]:
+            - generic [ref=e161]:
+              - paragraph [ref=e162]: Start
+              - generic [ref=e163]: 11 days ago
+            - generic [ref=e164]:
+              - paragraph [ref=e165]: Close
+              - generic [ref=e166]: 2 months to go
+        - generic [ref=e176]:
+          - generic [ref=e178]:
+            - generic [ref=e179] [cursor=pointer]:
+              - generic [ref=e181]:
+                - heading "Description" [level=3] [ref=e184]
+                - button "Copy link" [ref=e185]: link
+              - button "Collapse" [expanded] [ref=e186]: keyboard_arrow_up
+            - generic [ref=e189]:
+              - paragraph [ref=e190]: Physics doesn't care if your code compiles. It is relatively easy for a language model to ace a textbook thermodynamics quiz or write a self-contained Python script. Designing a real building is a different sport. Try routing chilled-water piping across seven drawing sheets around an offset structural grid and 104 sprinkler heads without putting a steel beam through an air duct.
+              - paragraph [ref=e191]:
+                - img "Four Engineering Disciplines in Physical-Engineering's Last Exam" [ref=e192]
+              - paragraph [ref=e193]: Most AI benchmarks treat engineering like a trivia night. Models score above 90% on isolated question-answering sets, yet stall out when handed a real project folder. Actual physical engineering isn't a single formula look-up; it is a multi-hour investigation across dozens of messy, interdependent files. Before a school, hospital, semiconductor fab, or data center breaks ground, practicing engineers spend months cross-checking 3D computer-aided design (CAD) geometries, geotechnical soil borings, municipal utility rules, and 50-file specification packages to issue deliverables a licensed reviewer will stamp. Current agents often misread drawing callouts, apply the wrong code clause, drop unit conversions, or quit early—leaving top frontier models scoring below 50%.
+              - paragraph [ref=e194]:
+                - text: Google Cloud AI Research,
+                - link "in partnership with Mercor (opens in a new tab)" [ref=e195] [cursor=pointer]:
+                  - /url: https://www.mercor.com/blog/introducing-physical-engineering-s-last-exam-ple-with-google-cloud-ai-research/
+                  - text: in partnership with Mercor
+                - text: and alongside academic partners from Stanford, NYU, the University of Washington, UNC Chapel Hill, Harvard, and Columbia, is opening the vault with
+                - strong [ref=e196]: Physical-Engineering's Last Exam (PLE)
+                - text: ". For the first time, this release introduces a benchmark of 85 expert-reviewed, long-horizon engineering tasks across four core disciplines: structural, civil, electrical, and mechanical engineering."
+              - paragraph [ref=e197]: In this competition, your task is to build an open-source agent harness, pair it with a Google-sponsored foundation model, and document your engineering findings in a Kaggle Writeup. Instead of wrapping a single prompt around a chatbot, you will engineer the verification loops, CAD and spreadsheet tool integrations, context-management strategies, and self-checks needed to turn raw project folders into graded engineering artifacts—from seismic shear-wall calculations and clay footing settlement memos to clash-free 3D building models in Industry Foundation Classes (IFC4) format and 25-year cooling-tower cost studies.
+              - paragraph [ref=e198]: If successful, your work will help take months of tedious planning overhead off the plates of human engineers and compress infrastructure design cycles down to days.
+          - generic [ref=e200]:
+            - generic [ref=e201] [cursor=pointer]:
+              - generic [ref=e203]:
+                - heading "Submission Requirements" [level=3] [ref=e206]
+                - button "Copy link" [ref=e207]: link
+              - button "Collapse" [expanded] [ref=e208]: keyboard_arrow_up
+            - generic [ref=e211]:
+              - paragraph [ref=e212]:
+                - text: Submit one
+                - link "Kaggle Writeup (opens in a new tab)" [ref=e213] [cursor=pointer]:
+                  - /url: https://www.kaggle.com/competitions/physical-engineerings-last-exam/writeups
+                  - text: Kaggle Writeup
+                - text: (not to exceed 2,000 words) before the deadline. You can un-submit, edit, and re-submit until the deadline; un-submitted drafts are not judged.
+              - paragraph [ref=e214]: "Your Writeup must include:"
+              - list [ref=e215]:
+                - listitem [ref=e216]: "Coverage of all 5 Stage 1 rubric criteria, a Media Gallery cover image, and 3 figures: (1) an architecture diagram, (2) a score-vs-cost plot, and (3) a failure breakdown on the 29 dev tasks."
+                - listitem [ref=e217]:
+                  - text: Your GitHub repo URL under
+                  - code [ref=e218]: Project Links
+                  - text: and 40-character commit SHA (
+                  - code [ref=e219]: git rev-parse HEAD
+                  - text: ) at the top of the Writeup. That commit must include
+                  - code [ref=e220]: submission.yaml
+                  - text: (set to one of the 8
+                  - code [ref=e221]: google-cloud/*
+                  - text: models),
+                  - code [ref=e222]: serve.py
+                  - text: ","
+                  - code [ref=e223]: harness.py
+                  - text: ", an"
+                  - code [ref=e224]: Apache-2.0
+                  - text: or
+                  - code [ref=e225]: MIT
+                  - code [ref=e226]: LICENSE
+                  - text: ", and the unpacked"
+                  - code [ref=e227]: artifacts/
+                  - text: from
+                  - code [ref=e228]: uv run python eval/run.py
+                  - text: ", and pass"
+                  - code [ref=e229]: uv run python -m kit check
+                  - text: and
+                  - code [ref=e230]: uv run python -m kit artifacts
+                  - text: . If your repo is private during the competition, install the
+                  - link "ple-submission GitHub App (opens in a new tab)" [ref=e231] [cursor=pointer]:
+                    - /url: https://github.com/apps/ple-submission/installations/new
+                    - text: ple-submission GitHub App
+                  - text: and make it public at competition close.
+                - listitem [ref=e232]: If you use an open-weight or custom local judge (JUDGE_MODEL) instead of a frontier model when generating dev scores, you should state which judge model you used in your Writeup.
+          - generic [ref=e234]:
+            - generic [ref=e235] [cursor=pointer]:
+              - generic [ref=e237]:
+                - heading "Tracks and Awards" [level=3] [ref=e240]
+                - button "Copy link" [ref=e241]: link
+              - button "Collapse undefined" [expanded] [ref=e242]: keyboard_arrow_up
+            - generic [ref=e246]:
+              - generic [ref=e248]:
+                - generic [ref=e249]: category
+                - heading "Main Track · $400,000" [level=4] [ref=e250]
+              - list [ref=e252]:
+                - listitem [ref=e253]:
+                  - separator [ref=e254]
+                  - generic [ref=e255]:
+                    - generic [ref=e256]: trophy
+                    - generic [ref=e258]:
+                      - heading "First Place" [level=6] [ref=e259]
+                      - paragraph
+                    - heading "$250,000" [level=6] [ref=e260]
+                - listitem [ref=e261]:
+                  - separator [ref=e262]
+                  - generic [ref=e263]:
+                    - generic [ref=e264]: trophy
+                    - generic [ref=e266]:
+                      - heading "Second Place" [level=6] [ref=e267]
+                      - paragraph
+                    - heading "$100,000" [level=6] [ref=e268]
+                - listitem [ref=e269]:
+                  - separator [ref=e270]
+                  - generic [ref=e271]:
+                    - generic [ref=e272]: trophy
+                    - generic [ref=e274]:
+                      - heading "Third Place" [level=6] [ref=e275]
+                      - paragraph
+                    - heading "$50,000" [level=6] [ref=e276]
+          - generic [ref=e278]:
+            - generic [ref=e279] [cursor=pointer]:
+              - generic [ref=e281]:
+                - heading "Evaluation" [level=3] [ref=e284]
+                - button "Copy link" [ref=e285]: link
+              - button "Collapse" [expanded] [ref=e286]: keyboard_arrow_up
+            - generic [ref=e289]:
+              - paragraph [ref=e290]: "Submissions are evaluated in two stages: a 100-point Kaggle Writeup and pre-screening qualification gate (Stage 1) and live execution on 56 hidden test tasks (Stage 2)."
+              - heading "Minimum Requirements" [level=2] [ref=e291]
+              - paragraph [ref=e292]: "Your entry must pass all four checks to be considered for Stage 1:"
+              - list [ref=e293]:
+                - listitem [ref=e294]: "Submit a Kaggle Writeup (up to 2,000 words) covering all 5 rubric criteria with 3 required figures: (1) an architecture diagram, (2) a score-vs-cost plot, and (3) a dev-set failure breakdown. Un-submitted drafts are not judged."
+                - listitem [ref=e295]:
+                  - text: Link your GitHub repository and 40-character commit SHA (
+                  - code [ref=e296]: git rev-parse HEAD
+                  - text: ) under
+                  - code [ref=e297]: Project Links
+                  - text: . The repository root must include
+                  - code [ref=e298]: submission.yaml
+                  - text: ","
+                  - code [ref=e299]: serve.py
+                  - text: /
+                  - code [ref=e300]: harness.py
+                  - text: ", an"
+                  - code [ref=e301]: Apache-2.0
+                  - text: or
+                  - code [ref=e302]: MIT
+                  - text: license, and the unpacked
+                  - code [ref=e303]: artifacts/
+                  - text: directory. If your repo is private during the competition, install the
+                  - link "ple-submission GitHub App (opens in a new tab)" [ref=e304] [cursor=pointer]:
+                    - /url: https://github.com/apps/ple-submission/installations/new
+                    - text: ple-submission GitHub App
+                  - text: and make the repo public at competition close.
+                - listitem [ref=e305]:
+                  - text: Set
+                  - code [ref=e306]: model_api
+                  - text: in
+                  - code [ref=e307]: submission.yaml
+                  - text: to one of the 8 official
+                  - code [ref=e308]: google-cloud/<id>
+                  - text: models when submitting for Stage 2 evaluation (no Google Cloud or Vertex AI billing account is required during local dev; you can run local experiments and generate
+                  - code [ref=e309]: artifacts/
+                  - text: with any self-hosted open-weight model or personal LLM subscription/API key). In Stage 2, the evaluation proxy blocks custom API keys (
+                  - code [ref=e310]: .env
+                  - text: ), external model servers, and web search, and Google supplies the evaluation key at no cost to you.
+                - listitem [ref=e311]:
+                  - text: Pass
+                  - code [ref=e312]: uv run python -m kit check
+                  - text: and
+                  - code [ref=e313]: uv run python -m kit artifacts
+                  - text: via the
+                  - link "PLE Competition Kit (opens in a new tab)" [ref=e314] [cursor=pointer]:
+                    - /url: https://ple-bench.com/competition/guide
+                    - text: PLE Competition Kit
+                  - text: . Committed
+                  - code [ref=e315]: artifacts/
+                  - text: must be an unpacked directory (at most 512 MiB and 10,000 files, with no Git LFS or symlinks) generated by
+                  - code [ref=e316]: uv run python eval/run.py
+                  - text: . Switching
+                  - code [ref=e317]: model_api
+                  - text: in
+                  - code [ref=e318]: submission.yaml
+                  - text: to your target
+                  - code [ref=e319]: google-cloud/<id>
+                  - text: model before committing (after generating
+                  - code [ref=e320]: artifacts/
+                  - text: on a local or personal API model) will not disqualify you, and paid LLM-judge API calls are
+                  - emphasis [ref=e321]: not required
+                  - text: for local dev runs, as long as you document which local model and judge setup you used in your Writeup. Organizers will re-score
+                  - code [ref=e322]: artifacts/
+                  - text: using the official judge.
+              - heading "Stage 1 Writeup Rubric" [level=2] [ref=e323]
+              - paragraph [ref=e324]: "Judges score eligible Writeups on a 100-point scale:"
+              - table [ref=e325]:
+                - rowgroup [ref=e326]:
+                  - row [ref=e327]:
+                    - columnheader "Criterion" [ref=e328]
+                    - columnheader "Points" [ref=e329]
+                    - columnheader "What Judges Look For" [ref=e330]
+                - rowgroup [ref=e331]:
+                  - row [ref=e332]:
+                    - cell [ref=e333]:
+                      - strong [ref=e334]: 1. Insight & Failure Analysis
+                    - cell "25" [ref=e335]
+                    - cell "Teach something non-obvious about engineering agents. Show real dev-set failures (misreading a drawing callout, picking the wrong code clause, unit errors, stopping early), controlled ablations (\"We added X, and the dev score went from A to B\"), and ideas that failed." [ref=e336]
+                  - row [ref=e337]:
+                    - cell [ref=e338]:
+                      - strong [ref=e339]: 2. Engineering Reasoning
+                    - cell "25" [ref=e340]
+                    - cell "Walk through a concrete dev-set task and compare your agent's trajectory against a licensed engineer's workflow. Show where its reasoning held up, where it took shortcuts, and which domain skills (reading CAD/PDF drawings, checking code tables, running solvers) separated passes from failures." [ref=e341]
+                  - row [ref=e342]:
+                    - cell [ref=e343]:
+                      - strong [ref=e344]: 3. Cross-Model Generalizability
+                    - cell "15" [ref=e345]
+                    - cell [ref=e346]:
+                      - text: Test on the 29 public dev tasks with at least two models (including any local open-weight or personal API models), ideally across model families. Report which changes help every model, which help only one, and how model choice shifts accuracy and token cost. Put the comparison table in your Writeup and commit your single target
+                      - code [ref=e347]: google-cloud/<id>
+                      - code [ref=e348]: model_api
+                      - text: in
+                      - code [ref=e349]: submission.yaml
+                      - text: for Stage 2.
+                  - row [ref=e350]:
+                    - cell [ref=e351]:
+                      - strong [ref=e352]: 4. Efficiency & Scaling
+                    - cell "20" [ref=e353]
+                    - cell "Plot dev-set score against compute budget (calls, tokens, runtime, or parallel verification attempts). Mark where accuracy plateaus and estimate remaining headroom." [ref=e354]
+                  - row [ref=e355]:
+                    - cell [ref=e356]:
+                      - strong [ref=e357]: 5. Clarity & Visuals
+                    - cell "15" [ref=e358]
+                    - cell "Write for an ML researcher without a civil, mechanical, or electrical background, and put your headline finding near the top. Include the 3 required figures and keep the writeup under 2,000 words (not a 6,000-word dump)." [ref=e359]
+                  - row [ref=e360]:
+                    - cell [ref=e361]:
+                      - strong [ref=e362]: Total
+                    - cell [ref=e363]:
+                      - strong [ref=e364]: "100"
+                    - cell [ref=e365]
+              - paragraph [ref=e366]:
+                - text: The
+                - strong [ref=e367]: Top 100 submissions
+                - text: from Stage 1 advance to Stage 2. Entries must pass automated
+                - code [ref=e368]: kit check / artifacts/
+                - text: verification before being scored on the Stage 1 Writeup Rubric and may be pre-screened on a small hidden-task subset.
+              - heading "Stage 2 Hidden Test Evaluation" [level=2] [ref=e369]
+              - paragraph [ref=e370]:
+                - text: The Top 100 finalist entries are evaluated across all
+                - strong [ref=e371]: 56 hidden test tasks
+                - text: "(6 Structural, 9 Civil, 18 Electrical, and 23 Mechanical):"
+              - list [ref=e372]:
+                - listitem [ref=e373]:
+                  - text: The evaluator clones your commit, runs
+                  - code [ref=e374]: install
+                  - text: once in a
+                  - code [ref=e375]: debian:bookworm
+                  - text: build container (30-minute timeout,
+                  - code [ref=e376]: /opt/harness
+                  - text: capped at 2 GiB compressed), and runs the smoke test (
+                  - code [ref=e377]: serve
+                  - text: binds to
+                  - code [ref=e378]: 0.0.0.0:$PORT
+                  - text: within 120 seconds, writes a test file, and sends
+                  - code [ref=e379]: done
+                  - text: ).
+                - listitem [ref=e380]:
+                  - text: Next, it grades your committed
+                  - code [ref=e381]: artifacts/
+                  - text: on the 29 public dev tasks and re-runs a random dev sample live. Entries that fail reproducibility checks or hard-code outputs are disqualified.
+                - listitem [ref=e382]:
+                  - text: For each of the 56 hidden tasks, your agent runs in an isolated container (
+                  - code [ref=e383]: 2 CPUs
+                  - text: ","
+                  - code [ref=e384]: 4 GB RAM
+                  - text: ", read-only"
+                  - code [ref=e385]: /opt/harness
+                  - text: ", writable 1 GB"
+                  - code [ref=e386]: /tmp
+                  - text: and
+                  - code [ref=e387]: $HOME
+                  - text: ","
+                  - strong [ref=e388]: 6-hour limit per task
+                  - text: ) over WebSocket. Verification scripts check quantitative calculations, CAD/IFC geometries, and constraints, while an LLM judge (
+                  - code [ref=e389]: Claude Opus 5.5
+                  - text: ) grades open-ended deliverables on a
+                  - code [ref=e390]: "0.0"
+                  - text: to
+                  - code [ref=e391]: "1.0"
+                  - text: scale (
+                  - code [ref=e392]: ungraded
+                  - text: or timed-out tasks without a
+                  - code [ref=e393]: done
+                  - text: or
+                  - code [ref=e394]: error
+                  - text: frame score
+                  - code [ref=e395]: "0.0"
+                  - text: ).
+              - paragraph [ref=e396]:
+                - text: Each finalist runs
+                - strong [ref=e397]: 3 independent times
+                - text: across all 56 hidden tasks. Stage 2 results are based on the performance-cost pareto of the
+                - strong [ref=e398]: mean score
+                - text: across all 3 runs and 56 tasks (168 task runs total, scored from
+                - code [ref=e399]: "0.0"
+                - text: to
+                - code [ref=e400]: "1.0"
+                - text: ) and their
+                - strong [ref=e401]: average cost
+                - text: (cost calculations can be found
+                - link "here (opens in a new tab)" [ref=e402] [cursor=pointer]:
+                  - /url: https://cloud.google.com/model-garden/pricing
+                  - text: here
+                - text: and
+                - link "here (opens in a new tab)" [ref=e403] [cursor=pointer]:
+                  - /url: https://cloud.google.com/model-garden/partner-models/pricing
+                  - text: here
+                - text: ).
+              - paragraph [ref=e404]:
+                - strong [ref=e405]:
+                  - text: Prizes will be awarded to the top 3 systems (ranked by mean score) that lie on the Stage 2 performance-cost Pareto frontier. Finalists must achieve a mean Stage 2 test score of
+                  - emphasis [ref=e406]: at least 0.138
+                  - text: to qualify for the performance-cost Pareto frontier and prizes.
+              - paragraph [ref=e407]:
+                - text: Organizers will publish all systems' scores and costs, and retry evaluator faults and sponsored-endpoint rate limits or outages automatically without penalty. Invalid requests (
+                - code [ref=e408]: HTTP 400
+                - text: ) or unrecovered agent crashes and timeouts count against your score.
+              - heading "Final Prize Ranking" [level=3] [ref=e409]
+              - paragraph [ref=e410]:
+                - text: Stage 1 is strictly a qualification gate.
+                - strong [ref=e411]: Among finalists on the Stage 2 performance-cost Pareto frontier, your Stage 2 mean test score determines the final 1st, 2nd, and 3rd prize ranking.
+                - text: Ties break on Stage 1 Writeup score first, then earlier Kaggle submission timestamp.
+              - heading "Sponsored Models" [level=2] [ref=e412]
+              - paragraph [ref=e413]:
+                - text: Entries run only on Google-sponsored models injected by the evaluator proxy (
+                - code [ref=e414]: MODEL_BASE_URL
+                - text: /
+                - code [ref=e415]: OPENAI_BASE_URL
+                - text: ","
+                - code [ref=e416]: ANTHROPIC_BASE_URL
+                - text: ","
+                - code [ref=e417]: GOOGLE_GEMINI_BASE_URL
+                - text: ). Note, this list may be updated as newer models are released.
+              - table [ref=e418]:
+                - rowgroup [ref=e419]:
+                  - row [ref=e420]:
+                    - columnheader "model_api Identifier" [ref=e421]:
+                      - code [ref=e422]: model_api
+                      - text: Identifier
+                    - columnheader "Model Name" [ref=e423]
+                    - columnheader "Family" [ref=e424]
+                - rowgroup [ref=e425]:
+                  - row [ref=e426]:
+                    - cell [ref=e427]:
+                      - code [ref=e428]: google-cloud/gemini-4-argon
+                    - cell "Gemini 4 Argon" [ref=e429]
+                    - cell "Gemini" [ref=e430]
+                  - row [ref=e431]:
+                    - cell [ref=e432]:
+                      - code [ref=e433]: google-cloud/gemini-3.8-flash
+                    - cell "Gemini 3.8 Flash" [ref=e434]
+                    - cell "Gemini" [ref=e435]
+                  - row [ref=e436]:
+                    - cell [ref=e437]:
+                      - code [ref=e438]: google-cloud/gemini-3.1-pro-preview
+                    - cell "Gemini 3.1 Pro (Preview)" [ref=e439]
+                    - cell "Gemini" [ref=e440]
+                  - row [ref=e441]:
+                    - cell [ref=e442]:
+                      - code [ref=e443]: google-cloud/gemma-4-26b
+                    - cell "Gemma 4 26B A4B" [ref=e444]
+                    - cell "Gemma (Open-Weight)" [ref=e445]
+                  - row [ref=e446]:
+                    - cell [ref=e447]:
+                      - code [ref=e448]: google-cloud/claude-opus-5-5
+                    - cell "Claude Opus 5.5" [ref=e449]
+                    - cell "Claude" [ref=e450]
+                  - row [ref=e451]:
+                    - cell [ref=e452]:
+                      - code [ref=e453]: google-cloud/gpt-oss-120b
+                    - cell "gpt-oss 120B" [ref=e454]
+                    - cell "Open-Weight" [ref=e455]
+                  - row [ref=e456]:
+                    - cell [ref=e457]:
+                      - code [ref=e458]: google-cloud/glm-5.2
+                    - cell "GLM 5.2" [ref=e459]
+                    - cell "GLM (Open-Weight)" [ref=e460]
+                  - row [ref=e461]:
+                    - cell [ref=e462]:
+                      - code [ref=e463]: google-cloud/llama-4-maverick
+                    - cell "Llama 4 Maverick 17B 128E" [ref=e464]
+                    - cell "Llama (Open-Weight)" [ref=e465]
+              - heading "How to Submit" [level=2] [ref=e466]
+              - list [ref=e467]:
+                - listitem [ref=e468]:
+                  - text: Clone
+                  - link "<code>google-research/ple</code> (opens in a new tab)" [ref=e469] [cursor=pointer]:
+                    - /url: https://github.com/google-research/ple
+                    - code [ref=e470]: google-research/ple
+                  - text: and start from
+                  - link "<code>physical-engineerings-last-exam/submission-template</code> (opens in a new tab)" [ref=e471] [cursor=pointer]:
+                    - /url: https://github.com/physical-engineerings-last-exam/submission-template
+                    - code [ref=e472]: physical-engineerings-last-exam/submission-template
+                  - text: (or
+                  - code [ref=e473]: sample_submissions/pi-opus
+                  - text: ","
+                  - code [ref=e474]: hermes-opus
+                  - text: ", or"
+                  - code [ref=e475]: agy-gemini
+                  - text: ).
+                - listitem [ref=e476]:
+                  - text: Validate with
+                  - code [ref=e477]: uv run python -m kit check ../my-harness
+                  - text: ", generate dev outputs with"
+                  - code [ref=e478]: uv run python eval/run.py ../my-harness
+                  - text: ", and check them with"
+                  - code [ref=e479]: uv run python -m kit artifacts ../my-harness
+                  - text: .
+                - listitem [ref=e480]:
+                  - text: Commit your code,
+                  - code [ref=e481]: submission.yaml
+                  - text: ", and"
+                  - code [ref=e482]: artifacts/
+                  - text: in one commit (
+                  - code [ref=e483]: git add -A && git commit -m "PLE harness submission"
+                  - text: ) and push to GitHub.
+                - listitem [ref=e484]:
+                  - text: On Kaggle, open the
+                  - strong [ref=e485]: Writeups
+                  - text: tab, click
+                  - strong [ref=e486]: New Writeup
+                  - text: ", attach your GitHub repo link under"
+                  - strong [ref=e487]: Project Links
+                  - text: ", put your 40-character commit SHA at the top, and click"
+                  - strong [ref=e488]: Submit
+                  - text: .
+              - paragraph [ref=e489]: "Note: Direct registration/submission on ple-bench.com is closed and all official entries must be submitted via Kaggle Writeups."
+          - generic [ref=e491]:
+            - generic [ref=e492] [cursor=pointer]:
+              - generic [ref=e494]:
+                - heading "Acknowledgements" [level=3] [ref=e497]
+                - button "Copy link" [ref=e498]: link
+              - button "Collapse" [expanded] [ref=e499]: keyboard_arrow_up
+            - generic [ref=e502]:
+              - paragraph [ref=e503]: "If you use the PLE benchmark in your research, please cite:"
+              - code [ref=e505]: "@misc{han2026ple, title = {{PLE}: Physical-Engineering's Last Exam}, author = {Rujun Han and Yufan Zhuang and Arijit Ray and Han Yu and Zhongying CuiZhu and George Lee and Yifei Ming and Binz Roy and Varun Sakalkar and Vishy Tirumalashetty and Burak Gokturk and Tomas Pfister and Chen-Yu Lee}, year = {2026}, eprint = {2610.30537}, archivePrefix = {arXiv}, primaryClass = {cs.AI}, url = {https://arxiv.org/abs/2610.30537} }"
+          - generic [ref=e507]:
+            - generic [ref=e508] [cursor=pointer]:
+              - generic [ref=e510]:
+                - heading "Judges" [level=3] [ref=e513]
+                - button "Copy link" [ref=e514]: link
+              - button "Collapse undefined" [expanded] [ref=e515]: keyboard_arrow_up
+            - list [ref=e518]:
+              - listitem "Yufan Zhuang List Item" [ref=e519]:
+                - link "Yufan Zhuang" [ref=e521] [cursor=pointer]:
+                  - generic [ref=e522]:
+                    - generic "Yufan Zhuang" [ref=e525]
+                    - generic [ref=e530]:
+                      - generic [ref=e531]: Yufan Zhuang
+                      - generic [ref=e532]: Research Scientist, Google
+              - listitem "Rujun Han List Item" [ref=e533]:
+                - link "Rujun Han" [ref=e535] [cursor=pointer]:
+                  - generic [ref=e536]:
+                    - generic "Rujun Han" [ref=e539]
+                    - generic [ref=e544]:
+                      - generic [ref=e545]: Rujun Han
+                      - generic [ref=e546]: Research Scientist, Google
+              - listitem "Arijit Ray List Item" [ref=e547]:
+                - link "Arijit Ray" [ref=e549] [cursor=pointer]:
+                  - generic [ref=e550]:
+                    - generic "Arijit Ray" [ref=e553]
+                    - generic [ref=e558]:
+                      - generic [ref=e559]: Arijit Ray
+                      - generic [ref=e560]: Research Scientist, Google
+              - listitem "Chen-Yu Lee List Item" [ref=e561]:
+                - link "Chen-Yu Lee" [ref=e563] [cursor=pointer]:
+                  - generic [ref=e564]:
+                    - generic "Chen-Yu Lee" [ref=e567]
+                    - generic [ref=e572]:
+                      - generic [ref=e573]: Chen-Yu Lee
+                      - generic [ref=e574]: Research Scientist, Google
+          - generic [ref=e576]:
+            - generic [ref=e577] [cursor=pointer]:
+              - generic [ref=e579]:
+                - heading "Timeline" [level=3] [ref=e582]
+                - button "Copy link" [ref=e583]: link
+              - button "Collapse" [expanded] [ref=e584]: keyboard_arrow_up
+            - generic [ref=e587]:
+              - list [ref=e588]:
+                - listitem [ref=e589]:
+                  - strong [ref=e590]: November 9, 2026
+                  - text: "- Start Date."
+                - listitem [ref=e591]:
+                  - strong [ref=e592]: January 5, 2027
+                  - text: "- Final Submission Deadline. All Kaggle Writeups and committed GitHub repositories (with dev-set"
+                  - code [ref=e593]: artifacts/
+                  - text: ) must be submitted by this date.
+                - listitem [ref=e594]:
+                  - strong [ref=e595]: January 19, 2027
+                  - text: "- Stage 1 Writeup Judging Complete (Top 100 finalists advance to Stage 2 hidden test set evaluation)."
+                - listitem [ref=e596]:
+                  - strong [ref=e597]: January 26, 2027
+                  - text: "- Stage 2 Test Set Evaluation Complete & Winners Announced."
+              - paragraph [ref=e598]: All deadlines are at 11:59 PM UTC on the corresponding day unless otherwise noted. The competition organizers reserve the right to update the contest timeline if they deem it necessary.
+          - generic [ref=e600]:
+            - generic [ref=e601] [cursor=pointer]:
+              - generic [ref=e603]:
+                - heading "Citation" [level=3] [ref=e606]
+                - button "Copy link" [ref=e607]: link
+              - button "Collapse Citation" [expanded] [ref=e608]: keyboard_arrow_up
+            - generic [ref=e610]:
+              - paragraph [ref=e611]: Rujun Han, Yufan Zhuang, Arijit Ray, Han Yu, Zhongying CuiZhu, George Lee, Yifei Ming, Binz Roy, Varun Sakalkar, Vishy Tirumalashetty, Addison Howard, Paul Mooney, Burak Gokturk, Tomas Pfister, and Chen-Yu Lee . Google - Agent Harness on Physical-Engineering's Last Exam. https://www.kaggle.com/competitions/physical-engineerings-last-exam, 2026. Kaggle.
+              - button "Cite" [ref=e612] [cursor=pointer]
+        - generic [ref=e614]:
+          - generic [ref=e615]:
+            - generic [ref=e616]:
+              - generic [ref=e617]:
+                - heading "Competition Host" [level=2] [ref=e618]
+                - paragraph [ref=e619]: Google
+              - link "Google's profile" [ref=e621] [cursor=pointer]:
+                - /url: /organizations/google
+                - generic "Google" [ref=e622]
+            - generic [ref=e627]:
+              - heading "Prizes & Awards" [level=2] [ref=e628]
+              - generic [ref=e629]:
+                - paragraph [ref=e631]: $400,000
+                - paragraph [ref=e632]: Does not award Points or Medals
+            - generic [ref=e634]:
+              - heading "Participation" [level=2] [ref=e635]
+              - paragraph [ref=e636]: 3,411 Entrants
+              - paragraph [ref=e637]: 65 Participants
+              - paragraph [ref=e638]: 65 Teams
+              - paragraph [ref=e639]: 65 Submissions
+            - generic [ref=e641]:
+              - heading "Tags" [level=2] [ref=e642]
+              - group "Tags" [ref=e644]:
+                - link "Engineering opens in new window" [ref=e645] [cursor=pointer]:
+                  - /url: /competitions?tagIds=12300-Engineering
+                  - generic [ref=e646]: Engineering
+                - link "Model Comparison opens in new window" [ref=e647] [cursor=pointer]:
+                  - /url: /competitions?tagIds=13315-Model+Comparison
+                  - generic [ref=e648]: Model Comparison
+                - link "Agentic opens in new window" [ref=e649] [cursor=pointer]:
+                  - /url: /competitions?tagIds=17200-Agentic
+                  - generic [ref=e650]: Agentic
+                - link "NLP opens in new window" [ref=e651] [cursor=pointer]:
+                  - /url: /competitions?tagIds=13204-NLP
+                  - generic [ref=e652]: NLP
+          - complementary [ref=e653]:
+            - generic [ref=e654]:
+              - generic [ref=e655]: Table of Contents
+              - button "Collapse all sections" [ref=e656] [cursor=pointer]: collapse_all
+            - tablist [ref=e660]:
+              - tab "Overview, 1 of 9" [ref=e661] [cursor=pointer]:
+                - generic [ref=e662]: Overview
+              - tab "Description, 2 of 9" [ref=e663] [cursor=pointer]:
+                - generic [ref=e664]: Description
+              - tab "Submission Requirements, 3 of 9" [ref=e665] [cursor=pointer]:
+                - generic [ref=e666]: Submission Requirements
+              - tab "Tracks and Awards, 4 of 9" [ref=e667] [cursor=pointer]:
+                - generic [ref=e668]: Tracks and Awards
+              - tab "Evaluation, 5 of 9" [ref=e669] [cursor=pointer]:
+                - generic [ref=e670]: Evaluation
+              - tab "Acknowledgements, 6 of 9" [ref=e671] [cursor=pointer]:
+                - generic [ref=e672]: Acknowledgements
+              - tab "Judges, 7 of 9" [ref=e673] [cursor=pointer]:
+                - generic [ref=e674]: Judges
+              - tab "Timeline, 8 of 9" [ref=e675] [cursor=pointer]:
+                - generic [ref=e676]: Timeline
+              - tab "Citation, 9 of 9" [ref=e677] [cursor=pointer]:
+                - generic [ref=e678]: Citation
+  - alert [ref=e680]

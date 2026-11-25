@@ -1,0 +1,28 @@
+[package]
+name = "agentdesk_core"
+version = "0.7.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Native accelerators for AgentDesk: DOM diffing, content-addressed refs, hot-path scrubbing and token counting"
+license = "MIT"
+
+[lib]
+name = "agentdesk_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+pyo3 = { version = "0.23", features = ["abi3-py38", "extension-module"], optional = true }
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+
+[features]
+default = []
+python = ["dep:pyo3"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

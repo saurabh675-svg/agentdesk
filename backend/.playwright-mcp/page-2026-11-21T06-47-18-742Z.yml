@@ -1,0 +1,137 @@
+- generic [ref=f20e2]:
+  - navigation "Main Kaggle page navigation" [ref=f20e3]:
+    - generic [ref=f20e5]:
+      - button "Navigation menu" [ref=f20e7] [cursor=pointer]: menu
+      - link "Skip to content" [ref=f20e8] [cursor=pointer]:
+        - /url: "#site-content"
+        - text: Skip tocontent
+    - button "Create on Kaggle" [ref=f20e10] [cursor=pointer]:
+      - generic [ref=f20e11]:
+        - generic:
+          - generic:
+            - paragraph: Create
+    - generic [ref=f20e16]:
+      - list [ref=f20e17]:
+        - listitem "Home List Item" [ref=f20e18]:
+          - link "Home" [ref=f20e20] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=f20e25]: Home
+        - listitem "Competitions List Item" [ref=f20e26]:
+          - link "Competitions" [ref=f20e28] [cursor=pointer]:
+            - /url: /competitions
+            - paragraph [ref=f20e33]: Competitions
+        - listitem "Benchmarks List Item" [ref=f20e34]:
+          - link "Benchmarks" [ref=f20e36] [cursor=pointer]:
+            - /url: /benchmarks
+            - paragraph [ref=f20e41]: Benchmarks
+        - listitem "Arenas List Item" [ref=f20e42]:
+          - link "Arenas" [ref=f20e44] [cursor=pointer]:
+            - /url: /arenas
+            - paragraph [ref=f20e49]: Arenas
+        - listitem "Game Arena List Item" [ref=f20e50]:
+          - link "Game Arena" [ref=f20e52] [cursor=pointer]:
+            - /url: /game-arena
+            - paragraph [ref=f20e57]: Game Arena
+      - list [ref=f20e58]:
+        - listitem "Data Hub List Item" [ref=f20e59]:
+          - link "Data Hub" [ref=f20e61] [cursor=pointer]:
+            - /url: "#"
+            - paragraph [ref=f20e66]: Data Hub
+      - list [ref=f20e67]:
+        - listitem "More on Kaggle List Item" [ref=f20e68]:
+          - link "More on Kaggle" [ref=f20e70] [cursor=pointer]:
+            - /url: "#"
+            - paragraph [ref=f20e75]: More
+  - navigation "Main menu, search and your account" [ref=f20e77]:
+    - generic [ref=f20e78]:
+      - generic [ref=f20e82]:
+        - textbox "Search" [ref=f20e84]
+        - group [aria-hidden]
+      - generic [ref=f20e86]:
+        - link [ref=f20e87] [cursor=pointer]:
+          - /url: /account/login?phase=startSignInTab&returnUrl=%2Fcompetitions%2Fphysical-engineerings-last-exam%2Fcode
+          - button "Login" [ref=f20e88]
+        - link [ref=f20e90] [cursor=pointer]:
+          - /url: /account/login?phase=startRegisterTab&returnUrl=%2Fcompetitions%2Fphysical-engineerings-last-exam%2Fcode
+          - button "Sign Up" [ref=f20e91]
+  - main [ref=f20e93]:
+    - generic [ref=f20e96]:
+      - generic [ref=f20e98]:
+        - generic [ref=f20e99]:
+          - link "Google's profile" [ref=f20e100] [cursor=pointer]:
+            - /url: /organizations/google
+            - generic "Google" [ref=f20e101]
+          - generic [ref=f20e105]:
+            - link "Go to profile for Google" [ref=f20e108] [cursor=pointer]:
+              - /url: /organizations/google
+              - text: Google
+            - generic [ref=f20e109]: · Featured Hackathon · 2 months to go
+          - generic [ref=f20e110]:
+            - button "Join Hackathon" [ref=f20e112] [cursor=pointer]
+            - button "Competition options menu collapsed" [ref=f20e115] [cursor=pointer]: more_horiz
+        - generic [ref=f20e117]:
+          - heading "Google - Agent Harness on Physical-Engineering's Last Exam" [level=1] [ref=f20e118]
+          - paragraph [ref=f20e120]: Build autonomous agent harnesses to solve real-world structural, civil, electrical, and mechanical engineering tasks
+      - generic [ref=f20e124]:
+        - tablist [ref=f20e131]:
+          - tab "Overview, 1 of 6" [ref=f20e132] [cursor=pointer]:
+            - generic [ref=f20e133]: Overview
+          - tab "Writeups, 2 of 6" [ref=f20e134] [cursor=pointer]:
+            - generic [ref=f20e135]: Writeups
+          - tab "Data, 3 of 6" [ref=f20e136] [cursor=pointer]:
+            - generic [ref=f20e137]: Data
+          - tab "Code, 4 of 6" [selected] [ref=f20e138] [cursor=pointer]:
+            - generic [ref=f20e139]: Code
+          - tab "Discussion, 5 of 6" [ref=f20e141] [cursor=pointer]:
+            - generic [ref=f20e142]: Discussion
+          - tab "Rules, 6 of 6" [ref=f20e143] [cursor=pointer]:
+            - generic [ref=f20e144]: Rules
+        - separator [ref=f20e145]
+      - generic [ref=f20e147]:
+        - generic [ref=f20e148]:
+          - heading "Notebooks" [level=2] [ref=f20e151]
+          - button "New Notebook" [ref=f20e152] [cursor=pointer]
+        - generic [ref=f20e155]:
+          - generic [ref=f20e158]:
+            - textbox "Search notebooks" [ref=f20e160]
+            - generic "Filter is added" [ref=f20e162]:
+              - button "Filters" [ref=f20e163] [cursor=pointer]:
+                - generic [aria-hidden] [ref=f20e164]: filter_list
+            - group [aria-hidden]
+          - tablist [ref=f20e170]:
+            - tab "All, 1 of 4" [selected] [ref=f20e171] [cursor=pointer]:
+              - generic [ref=f20e172]: All
+            - tab "Your Work, 2 of 4" [ref=f20e174] [cursor=pointer]:
+              - generic [ref=f20e175]: Your Work
+            - tab "Shared With You, 3 of 4" [ref=f20e176] [cursor=pointer]:
+              - generic [ref=f20e177]: Shared With You
+            - tab "Bookmarks, 4 of 4" [ref=f20e178] [cursor=pointer]:
+              - generic [ref=f20e179]: Bookmarks
+          - generic [ref=f20e182]:
+            - combobox "Select Sort. Hotness currently selected." [ref=f20e183] [cursor=pointer]:
+              - generic [ref=f20e184]: Hotness
+            - textbox [aria-hidden]: Hotness
+          - generic [ref=f20e186]:
+            - separator [ref=f20e187]
+            - list [ref=f20e189]:
+              - listitem "undefined List Item" [ref=f20e190]
+              - listitem "undefined List Item" [ref=f20e207]
+              - listitem "undefined List Item" [ref=f20e224]
+              - listitem "undefined List Item" [ref=f20e241]
+              - listitem "undefined List Item" [ref=f20e258]
+              - listitem "undefined List Item" [ref=f20e275]
+              - listitem "undefined List Item" [ref=f20e292]
+              - listitem "undefined List Item" [ref=f20e309]
+              - listitem "undefined List Item" [ref=f20e326]
+              - listitem "undefined List Item" [ref=f20e343]
+              - listitem "undefined List Item" [ref=f20e360]
+              - listitem "undefined List Item" [ref=f20e377]
+              - listitem "undefined List Item" [ref=f20e394]
+              - listitem "undefined List Item" [ref=f20e411]
+              - listitem "undefined List Item" [ref=f20e428]
+              - listitem "undefined List Item" [ref=f20e445]
+              - listitem "undefined List Item" [ref=f20e462]
+              - listitem "undefined List Item" [ref=f20e479]
+              - listitem "undefined List Item" [ref=f20e496]
+              - listitem "undefined List Item" [ref=f20e513]
+  - alert [ref=f20e531]

@@ -1,0 +1,135 @@
+- generic [ref=e2]:
+  - navigation "Main Kaggle page navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - button "Navigation menu" [ref=e7] [cursor=pointer]: menu
+      - link "Skip to content" [ref=e8] [cursor=pointer]:
+        - /url: "#site-content"
+        - text: Skip tocontent
+    - button "Create on Kaggle" [ref=e10] [cursor=pointer]:
+      - generic [ref=e11]:
+        - generic:
+          - generic:
+            - paragraph: Create
+    - generic [ref=e16]:
+      - list [ref=e17]:
+        - listitem "Home List Item" [ref=e18]:
+          - link "Home" [ref=e20] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e25]: Home
+        - listitem "Competitions List Item" [ref=e26]:
+          - link "Competitions" [ref=e28] [cursor=pointer]:
+            - /url: /competitions
+            - paragraph [ref=e33]: Competitions
+        - listitem "Benchmarks List Item" [ref=e34]:
+          - link "Benchmarks" [ref=e36] [cursor=pointer]:
+            - /url: /benchmarks
+            - paragraph [ref=e41]: Benchmarks
+        - listitem "Arenas List Item" [ref=e42]:
+          - link "Arenas" [ref=e44] [cursor=pointer]:
+            - /url: /arenas
+            - paragraph [ref=e49]: Arenas
+        - listitem "Game Arena List Item" [ref=e50]:
+          - link "Game Arena" [ref=e52] [cursor=pointer]:
+            - /url: /game-arena
+            - paragraph [ref=e57]: Game Arena
+      - list [ref=e58]:
+        - listitem "Data Hub List Item" [ref=e59]:
+          - link "Data Hub" [ref=e61] [cursor=pointer]:
+            - /url: "#"
+            - paragraph [ref=e66]: Data Hub
+      - list [ref=e67]:
+        - listitem "More on Kaggle List Item" [ref=e68]:
+          - link "More on Kaggle" [ref=e70] [cursor=pointer]:
+            - /url: "#"
+            - paragraph [ref=e75]: More
+  - navigation "Main menu, search and your account" [ref=e77]:
+    - generic [ref=e78]:
+      - generic [ref=e82]:
+        - textbox "Search" [ref=e84]
+        - group [aria-hidden]
+      - generic [ref=e86]:
+        - link [ref=e87] [cursor=pointer]:
+          - /url: /account/login?phase=startSignInTab&returnUrl=%2Fcompetitions%2Fphysical-engineerings-last-exam%2Fcode
+          - button "Login" [ref=e88]
+        - link [ref=e90] [cursor=pointer]:
+          - /url: /account/login?phase=startRegisterTab&returnUrl=%2Fcompetitions%2Fphysical-engineerings-last-exam%2Fcode
+          - button "Sign Up" [ref=e91]
+  - main [ref=e93]:
+    - generic [ref=e96]:
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - link "Google's profile" [ref=e100] [cursor=pointer]:
+            - /url: /organizations/google
+            - generic "Google" [ref=e101]
+          - generic [ref=e105]:
+            - link "Go to profile for Google" [ref=e108] [cursor=pointer]:
+              - /url: /organizations/google
+              - text: Google
+            - generic [ref=e109]: · Featured Hackathon · 2 months to go
+          - generic [ref=e110]:
+            - button "Join Hackathon" [ref=e112] [cursor=pointer]
+            - button "Competition options menu collapsed" [ref=e115] [cursor=pointer]: more_horiz
+        - generic [ref=e117]:
+          - heading "Google - Agent Harness on Physical-Engineering's Last Exam" [level=1] [ref=e118]
+          - paragraph [ref=e120]: Build autonomous agent harnesses to solve real-world structural, civil, electrical, and mechanical engineering tasks
+      - generic [ref=e124]:
+        - tablist [ref=e131]:
+          - tab "Overview, 1 of 5" [ref=e132] [cursor=pointer]:
+            - generic [ref=e133]: Overview
+          - tab "Writeups, 2 of 5" [ref=e134] [cursor=pointer]:
+            - generic [ref=e135]: Writeups
+          - tab "Code, 3 of 5" [active] [selected] [ref=e136] [cursor=pointer]:
+            - generic [ref=e137]: Code
+          - tab "Discussion, 4 of 5" [ref=e138] [cursor=pointer]:
+            - generic [ref=e139]: Discussion
+          - tab "Rules, 5 of 5" [ref=e140] [cursor=pointer]:
+            - generic [ref=e141]: Rules
+        - separator [ref=e143]
+      - generic [ref=e681]:
+        - generic [ref=e682]:
+          - heading "Notebooks" [level=2] [ref=e685]
+          - button "New Notebook" [ref=e686] [cursor=pointer]
+        - generic [ref=e689]:
+          - generic [ref=e692]:
+            - textbox "Search notebooks" [ref=e694]
+            - generic "Filter is added" [ref=e696]:
+              - button "Filters" [ref=e697] [cursor=pointer]:
+                - generic [aria-hidden] [ref=e698]: filter_list
+            - group [aria-hidden]
+          - tablist [ref=e704]:
+            - tab "All, 1 of 4" [selected] [ref=e705] [cursor=pointer]:
+              - generic [ref=e706]: All
+            - tab "Your Work, 2 of 4" [ref=e707] [cursor=pointer]:
+              - generic [ref=e708]: Your Work
+            - tab "Shared With You, 3 of 4" [ref=e709] [cursor=pointer]:
+              - generic [ref=e710]: Shared With You
+            - tab "Bookmarks, 4 of 4" [ref=e711] [cursor=pointer]:
+              - generic [ref=e712]: Bookmarks
+          - generic [ref=e716]:
+            - combobox "Select Sort. Hotness currently selected." [ref=e717] [cursor=pointer]:
+              - generic [ref=e718]: Hotness
+            - textbox [aria-hidden]: Hotness
+          - generic [ref=e720]:
+            - separator [ref=e721]
+            - list [ref=e723]:
+              - listitem "undefined List Item" [ref=e724]
+              - listitem "undefined List Item" [ref=e741]
+              - listitem "undefined List Item" [ref=e758]
+              - listitem "undefined List Item" [ref=e775]
+              - listitem "undefined List Item" [ref=e792]
+              - listitem "undefined List Item" [ref=e809]
+              - listitem "undefined List Item" [ref=e826]
+              - listitem "undefined List Item" [ref=e843]
+              - listitem "undefined List Item" [ref=e860]
+              - listitem "undefined List Item" [ref=e877]
+              - listitem "undefined List Item" [ref=e894]
+              - listitem "undefined List Item" [ref=e911]
+              - listitem "undefined List Item" [ref=e928]
+              - listitem "undefined List Item" [ref=e945]
+              - listitem "undefined List Item" [ref=e962]
+              - listitem "undefined List Item" [ref=e979]
+              - listitem "undefined List Item" [ref=e996]
+              - listitem "undefined List Item" [ref=e1013]
+              - listitem "undefined List Item" [ref=e1030]
+              - listitem "undefined List Item" [ref=e1047]
+  - alert [ref=e680]

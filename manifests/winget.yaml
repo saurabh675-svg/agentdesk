@@ -1,0 +1,19 @@
+PackageIdentifier: AgentDesk.AgentDesk
+PackageVersion: 0.7.0
+PackageName: AgentDesk
+Publisher: AgentDesk Local
+License: MIT
+ShortDescription: Three-panel agentic coding desktop app with built-in browser automation
+Description: >-
+  Local-first AI agent desktop app (Electron + FastAPI + llama.cpp) with
+  multi-language browser control (REST/WS, CDP, WebDriver BiDi), free cloud
+  gateways and scheduled automations.
+InstallerType: nsis
+PublishersDomain: local
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/agentdesk/agentdesk/releases/download/v0.7.0/AgentDesk-Setup-0.7.0.exe
+    InstallerSha256: 0000000000000000000000000000000000000000000000000000000000000000
+    InstallerType: nsis
+    ProductCode: AgentDesk
+    UpgradeBehavior: install

@@ -1,0 +1,43 @@
+{
+  "version": "0.7.0",
+  "cases": [
+    {
+      "id": "browser-snapshot-parse",
+      "kind": "unit",
+      "fn": "app.tools.browser_snapshot.parse_elements",
+      "input": {"html": "<button>Submit</button><input placeholder='Email'>"},
+      "expect": {"min_elements": 2, "has_submit": true}
+    },
+    {
+      "id": "rubric-grader-consistent",
+      "kind": "unit",
+      "fn": "app.agent_rubric.GraderResponse.from_json",
+      "input": {"raw": "{\"result\":\"satisfied\",\"explanation\":\"ok\",\"criteria\":[{\"name\":\"a\",\"passed\":true}]}"},
+      "expect": {"result": "satisfied"}
+    },
+    {
+      "id": "gateway-classify-404",
+      "kind": "unit",
+      "fn": "app.engine.gateways.classify_error",
+      "input": {"status": 404, "message": "model not found"},
+      "expect": {"kind": "model_not_found"}
+    },
+    {
+      "id": "browser-find-submit",
+      "kind": "browser",
+      "steps": [
+        {"do": "navigate", "url": "file://evals/fixtures/pilot.html"},
+        {"do": "snapshot"},
+        {"do": "find_by_text", "text": "Submit", "expect": "found"}
+      ],
+      "expect": {"found": true}
+    },
+    {
+      "id": "brain-hybrid-shape",
+      "kind": "unit",
+      "fn": "app.brain_vector.hybrid_search",
+      "input": {"query": "test", "limit": 5},
+      "expect": {"list_shape": true}
+    }
+  ]
+}

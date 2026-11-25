@@ -1,0 +1,51 @@
+- generic [ref=f15e1]:
+  - generic [ref=f15e3]:
+    - generic [ref=f15e4]:
+      - generic [aria-hidden] [ref=f15e6]:
+        - generic [ref=f15e7]: Loading
+        - progressbar [aria-hidden] [ref=f15e8]
+      - main [ref=f15e15]:
+        - generic [ref=f15e16]:
+          - generic [ref=f15e18]:
+            - generic [ref=f15e19]: Sign in with Google
+            - img "Kaggle" [ref=f15e23]
+          - generic [ref=f15e24]:
+            - heading "Sign in" [level=1] [ref=f15e25]
+            - generic [ref=f15e27]:
+              - text: to continue to
+              - button "Kaggle" [ref=f15e28] [cursor=pointer]
+        - generic [ref=f15e31]:
+          - generic [ref=f15e36]:
+            - generic [ref=f15e41]:
+              - textbox "Email or phone" [active] [ref=f15e42]: kumarr
+              - generic [aria-hidden]: Email or phone
+            - button "Forgot email?" [ref=f15e46] [cursor=pointer]
+          - generic [ref=f15e49]:
+            - text: Before using this app, you can review Kaggle’s
+            - link "Privacy Policy" [ref=f15e50] [cursor=pointer]:
+              - /url: https://www.kaggle.com/privacy
+            - text: and
+            - link "Terms of Service" [ref=f15e51] [cursor=pointer]:
+              - /url: https://www.kaggle.com/terms
+            - text: .
+        - generic [ref=f15e53]:
+          - button "Next" [ref=f15e57]
+          - button "Create account" [ref=f15e65]
+    - contentinfo [ref=f15e72]:
+      - combobox "Change language English (United States)" [ref=f15e76] [cursor=pointer]:
+        - generic [aria-hidden]:
+          - generic: English (United States)
+      - list [ref=f15e78]:
+        - listitem [ref=f15e79]:
+          - link "Open Google Account Help Center (external, opens in a new window)" [ref=f15e80] [cursor=pointer]:
+            - /url: https://support.google.com/accounts?hl=en-US&p=account_iph
+            - text: Help
+        - listitem [ref=f15e81]:
+          - link "Privacy Policy (external, opens in a new window)" [ref=f15e82] [cursor=pointer]:
+            - /url: https://accounts.google.com/TOS?loc=IN&hl=en-US&privacy=true
+            - text: Privacy
+        - listitem [ref=f15e83]:
+          - link "Google Terms of Service (external, opens in a new window)" [ref=f15e84] [cursor=pointer]:
+            - /url: https://accounts.google.com/TOS?loc=IN&hl=en-US
+            - text: Terms
+  - iframe [ref=f15e85]

@@ -1,0 +1,177 @@
+{
+  "name": "agentdesk",
+  "version": "0.7.0",
+  "private": true,
+  "description": "Three-panel agentic coding desktop app with built-in browser automation",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build:ui": "vite build",
+    "start": "node scripts/dev.mjs --prod",
+    "typecheck": "tsc --noEmit",
+    "build:installer": "node scripts/build-installer.mjs",
+    "build:portable": "npm run build:ui && electron-builder --win portable"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "remark-gfm": "^4.0.0",
+    "electron-updater": "^6.8.11"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  },
+  "build": {
+    "appId": "com.agentdesk.desktop",
+    "productName": "AgentDesk",
+    "copyright": "Copyright \u00a9 2026 AgentDesk",
+    "asar": false,
+    "compression": "store",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "package.json",
+      "electron/**/*",
+      "frontend/dist/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "installer/runtime/python",
+        "to": "runtime/python"
+      },
+      {
+        "from": "backend/app",
+        "to": "backend/app",
+        "exclude": [
+          "native"
+        ]
+      },
+      {
+        "from": "installer/runtime/llama-vulkan",
+        "to": "runtime/llama-vulkan"
+      },
+      {
+        "from": "installer/runtime/playwright",
+        "to": "runtime/playwright"
+      },
+      {
+        "from": "installer/runtime/models",
+        "to": "runtime/models"
+      },
+      {
+        "from": "backend/app/agentdesk_core.pyd",
+        "to": "backend/app/agentdesk_core.pyd"
+      },
+      {
+        "from": "backend/requirements.txt",
+        "to": "backend/requirements.txt"
+      },
+      {
+        "from": "README.md",
+        "to": "docs/README.md"
+      },
+      {
+        "from": "SETUP.md",
+        "to": "docs/SETUP.md"
+      },
+      {
+        "from": "MODIFYING.md",
+        "to": "docs/MODIFYING.md"
+      },
+      {
+        "from": "HANDOFF_0.3.1.md",
+        "to": "docs/HANDOFF_0.3.1.md"
+      },
+      {
+        "from": "sdk-py",
+        "to": "sdk-py"
+      },
+      {
+        "from": "sdk-ts",
+        "to": "sdk-ts"
+      },
+      {
+        "from": "native/cdp_helper/cdp_helper.exe",
+        "to": "native/cdp_helper/cdp_helper.exe"
+      },
+      {
+        "from": "native/AgentDesk.Win/.publish",
+        "to": "native/AgentDesk.Win"
+      },
+      {
+        "from": "sdk-ts/generated",
+        "to": "sdk-ts/generated"
+      },
+      {
+        "from": "sdk-py/generated",
+        "to": "sdk-py/generated"
+      },
+      {
+        "from": "docs/openapi.json",
+        "to": "docs/openapi.json"
+      },
+      {
+        "from": "docs/NEXT_UPGRADES_CUTTING_EDGE.md",
+        "to": "docs/NEXT_UPGRADES_CUTTING_EDGE.md"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "AgentDesk-Setup-${version}.${ext}"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "agentdesk",
+      "repo": "agentdesk"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "AgentDesk",
+      "installerLanguages": [
+        "en_US"
+      ],
+      "deleteAppDataOnUninstall": false
+    },
+    "electronVersion": "45.4.1",
+    "npmRebuild": false
+  },
+  "allowScripts": {
+    "electron@33.4.11": true,
+    "esbuild@0.25.12": true
+  }
+}

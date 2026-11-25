@@ -1,0 +1,14 @@
+{
+  "version": "0.7.0",
+  "description": "Three-panel agentic coding desktop app with built-in browser automation",
+  "homepage": "https://github.com/agentdesk/agentdesk",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/agentdesk/agentdesk/releases/download/v0.7.0/AgentDesk-Setup-0.7.0.exe",
+      "hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "extract_dir": "AgentDesk",
+  "bin": ["AgentDesk.exe"]
+}

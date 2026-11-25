@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AgentDesk — Next upgrades (polyglot, Python-core)</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-sans, system-ui, -apple-system, Segoe UI, sans-serif); line-height: 1.5; }
+  .wrap { padding: 4px 0 28px; }
+  h1 { font-size: 1.45rem; margin: 0 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 1.02rem; margin: 26px 0 10px; display: flex; align-items: center; gap: 8px; }
+  h2 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; }
+  p.lead { margin: 0 0 4px; color: var(--muted-foreground); font-size: .92rem; }
+  .rule { height: 1px; background: var(--border); margin: 18px 0 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: .845rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted-foreground); font-weight: 600; }
+  tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+  td.part { font-weight: 600; white-space: nowrap; }
+  td.now { color: var(--muted-foreground); }
+  .lang { display: inline-block; font-family: var(--font-mono, ui-monospace, monospace); font-size: .72rem; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--border); white-space: nowrap; }
+  .l-py { background: color-mix(in srgb, var(--chart-1) 18%, transparent); }
+  .l-ts { background: color-mix(in srgb, var(--chart-2) 18%, transparent); }
+  .l-rs { background: color-mix(in srgb, var(--chart-3) 18%, transparent); }
+  .l-cpp { background: color-mix(in srgb, var(--chart-4) 18%, transparent); }
+  .l-cs { background: color-mix(in srgb, var(--chart-5) 18%, transparent); }
+  .ph { font-family: var(--font-mono, monospace); font-size: .76rem; color: var(--muted-foreground); white-space: nowrap; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 12px; margin-top: 8px; }
+  .card { border: 1px solid var(--border); border-radius: var(--radius, 10px); padding: 13px 15px; background: var(--card); color: var(--card-foreground); }
+  .card h3 { margin: 0 0 3px; font-size: .9rem; }
+  .card .pct { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+  .card p { margin: 4px 0 0; font-size: .8rem; color: var(--muted-foreground); }
+  .strip { display: flex; height: 30px; border-radius: 8px; overflow: hidden; margin: 10px 0 4px; border: 1px solid var(--border); }
+  .strip div { display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 600; font-family: var(--font-mono, monospace); }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: .78rem; color: var(--muted-foreground); margin-top: 8px; }
+  .phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .phase { border: 1px solid var(--border); border-radius: var(--radius, 10px); padding: 13px 15px; }
+  .phase .tag { font-family: var(--font-mono, monospace); font-size: .78rem; color: var(--accent); font-weight: 700; }
+  .phase ul { margin: 8px 0 0; padding-left: 17px; font-size: .8rem; color: var(--muted-foreground); }
+  .phase li { margin: 3px 0; }
+  .note { font-size: .82rem; color: var(--muted-foreground); border-left: 2px solid var(--border); padding-left: 11px; margin: 10px 0 0; }
+  code { font-family: var(--font-mono, monospace); font-size: .8em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AgentDesk — next upgrades</h1>
+  <p class="lead">Polyglot, cutting-edge, <strong>Python stays the spine</strong>. Other languages take the hot paths, the Windows-native edges, and the façades where each ecosystem lives. Free / open-source only.</p>
+  <div class="rule"></div>
+
+  <h2><span class="dot"></span>Language split of new code</h2>
+  <div class="strip">
+    <div style="width:55%;background:color-mix(in srgb,var(--chart-1) 26%,transparent)">Python 55%</div>
+    <div style="width:25%;background:color-mix(in srgb,var(--chart-2) 26%,transparent)">TS 25%</div>
+    <div style="width:10%;background:color-mix(in srgb,var(--chart-3) 26%,transparent)">Rust 10%</div>
+    <div style="width:6%;background:color-mix(in srgb,var(--chart-4) 26%,transparent)">C++ 6%</div>
+    <div style="width:4%;background:color-mix(in srgb,var(--chart-5) 26%,transparent)">C# 4%</div>
+  </div>
+
+  <h2><span class="dot"></span>Three interop tiers</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>In-process</h3>
+      <div class="pct">PyO3 · pybind11</div>
+      <p>Hot pure functions: DOM diff, content refs, scrubbing, token counting. Import failure → transparent Python fallback.</p>
+    </div>
+    <div class="card">
+      <h3>Sidecar</h3>
+      <div class="pct">Named pipe · NDJSON</div>
+      <p>Windows-native UIA3, ConPTY terminal, native CDP driver. Crash → auto-respawn, tool returns a clear error.</p>
+    </div>
+    <div class="card">
+      <h3>Network</h3>
+      <div class="pct">OpenAPI 3.1</div>
+      <p>External SDKs in TS, C#, C++, Go. One contract, generated clients per language — no hand-editing, no drift.</p>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Upgrade matrix — every part</h2>
+  <table>
+    <thead><tr><th>Part</th><th>Today</th><th>Target (cutting edge)</th><th>Language</th><th>Release</th></tr></thead>
+    <tbody>
+      <tr><td class="part">Agent loop</td><td class="now">3,040-LOC <code>agent.py</code></td><td>Split runner/planner/policy; PLAN→ACT→OBSERVE→REFLECT state machine; Responses API + prompt caching</td><td><span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Tool registry</td><td class="now">dict of functions</td><td>Typed <code>ToolSpec</code> from Pydantic, budget classes, per-tool routing, MCP elicitation</td><td><span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Browser engine</td><td class="now">Playwright wrapper</td><td><code>BrowserEngine</code> protocol, TabManager, DOM diff store, content-addressed refs</td><td><span class="lang l-py">Python</span></td><td class="ph">0.4.1</td></tr>
+      <tr><td class="part">Browser driver</td><td class="now">via Playwright</td><td>Own CDP client: binary frames, µs input dispatch, streaming screenshots</td><td><span class="lang l-cpp">C++</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">DOM diff / refs / scrub</td><td class="now">Python strings</td><td>Incremental tree diff, <code>ref:ab12</code> ids, hot-path redaction</td><td><span class="lang l-rs">Rust</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Secrets &amp; PII</td><td class="now">custom crypto + ad-hoc</td><td>Windows Credential Manager (DPAPI), Presidio PII detection in brain/tool output</td><td><span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">LLM gateway</td><td class="now">hand-rolled compat</td><td>OpenTelemetry spans, adaptive prompt-cache keys, retry budget, Batch API queue</td><td><span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Model routing</td><td class="now">health-weighted</td><td>Cost/quality/latency objective, shadow routing, eval-gated autotuning</td><td><span class="lang l-py">Python</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Local inference</td><td class="now">llama.cpp Vulkan</td><td>Speculative decoding + draft model, continuous batching; ONNX Runtime for embeddings</td><td><span class="lang l-py">Python</span> <span class="lang l-cpp">C++</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Memory / RAG</td><td class="now">brain.json + FTS5</td><td>FastEmbed embeddings + sqlite-vec, hybrid BM25 ⊕ dense retrieval</td><td><span class="lang l-py">Python</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Data layer</td><td class="now">SQLite</td><td>WAL + sqlite-vec; DuckDB over Parquet for earnings/usage analytics</td><td><span class="lang l-py">Python</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">MCP client</td><td class="now">own manager, 9 presets</td><td>Full MCP 2.x: resources, prompts, sampling, roots, elicitation, OAuth 2.1</td><td><span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">MCP server</td><td class="now">none</td><td>Publish our browser + tools so any MCP client drives the signed-in session</td><td><span class="lang l-py">Python</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Skills</td><td class="now">seeded + mtime cache</td><td>Versioned packages, semantic trigger matching, sandboxed skill runner</td><td><span class="lang l-py">Python</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Windows automation</td><td class="now">Python UIA</td><td>UIA3 tree walk, clipboard, DPI-aware capture, ConPTY, NativeAOT sidecar</td><td><span class="lang l-cs">C#</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Computer use</td><td class="now">screenshot loop</td><td>Set-of-Marks grounding + local VLM tier, safety in the service layer</td><td><span class="lang l-py">Python</span> <span class="lang l-cpp">C++</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Terminal</td><td class="now">xterm + pipes</td><td>True ConPTY, 24-bit colour, OSC 133 shell integration, cwd detection</td><td><span class="lang l-cs">C#</span> <span class="lang l-ts">TS</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Scheduler</td><td class="now">asyncio loop</td><td>Cron/interval + event triggers, missed-run policy, jitter, atomic claims</td><td><span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Workers</td><td class="now">pool</td><td>Lease-based queue, retries, sandbox tiers</td><td><span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Electron shell</td><td class="now">466 LOC</td><td>Slim main process, staged rollouts, minidump crash reporting</td><td><span class="lang l-ts">JS</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Frontend</td><td class="now">React 18 + Vite 6</td><td>React 19 + Vite 7 + TanStack Query v5 + Zustand + Tailwind v4</td><td><span class="lang l-ts">TS</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Frontend perf</td><td class="now">—</td><td>OffscreenCanvas charts, Web Worker markdown, virtualised message list</td><td><span class="lang l-ts">TS</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Contracts</td><td class="now">ad-hoc</td><td>OpenAPI 3.1 source → generated TS / Python / C# / C++ clients</td><td><span class="lang l-ts">TS</span> <span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">CLI</td><td class="now">none</td><td><code>agentdeskctl</code> — headless sessions, runs, browser, MCP</td><td><span class="lang l-rs">Rust</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Telemetry</td><td class="now">diagnostics.jsonl</td><td>OpenTelemetry OTLP traces, OpenInference conventions, Prometheus /metrics</td><td><span class="lang l-py">Python</span> <span class="lang l-rs">Rust</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Evals</td><td class="now">none</td><td>Golden trajectories, LLM-as-judge, deterministic tool record/replay, CI gate</td><td><span class="lang l-py">Python</span></td><td class="ph">0.6.0</td></tr>
+      <tr><td class="part">Installer</td><td class="now">NSIS + portable</td><td>winget + Scoop manifests, MSIX, delta updates, post-install smoke test</td><td><span class="lang l-ts">PowerShell</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">Runtime &amp; deps</td><td class="now">pinned reqs</td><td>uv lock, python-build-standalone runtime, hashed deps, pip-audit, CycloneDX SBOM</td><td><span class="lang l-py">Python</span></td><td class="ph">0.5.0</td></tr>
+      <tr><td class="part">CI</td><td class="now">node+py only</td><td>Matrix: Python / Node / cargo / MSVC+clang-cl / dotnet, SBOM, eval gate</td><td><span class="lang l-ts">TS</span></td><td class="ph">0.5.0</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="dot"></span>Release plan</h2>
+  <div class="phases">
+    <div class="phase">
+      <div class="tag">0.4.1</div>
+      <ul><li>BrowserEngine protocol</li><li>TabManager + tab strip</li><li>Action ledger</li></ul>
+    </div>
+    <div class="phase">
+      <div class="tag">0.5.0</div>
+      <ul><li>OpenTelemetry + Prometheus</li><li>OpenAPI + generated SDKs</li><li>Agent split, Rust core v1</li><li>C# ConPTY terminal, MCP 2.x</li></ul>
+    </div>
+    <div class="phase">
+      <div class="tag">0.6.0</div>
+      <ul><li>C++ CDP driver</li><li>MCP server</li><li>Hybrid RAG + DuckDB</li><li>Eval harness, Rust CLI</li></ul>
+    </div>
+    <div class="phase">
+      <div class="tag">0.7.0</div>
+      <ul><li>Windows UIA3 sidecar</li><li>Set-of-Marks + local VLM</li><li>MSIX / winget, i18n, a11y</li></ul>
+    </div>
+  </div>
+
+  <p class="note">Sequencing rule: no phase starts before the previous phase's acceptance criteria are met and the app installs and passes the smoke test. Every native path has a Python fallback — the app must never break because a binary is missing.</p>
+</div>
+</body>
+</html>
