@@ -95,7 +95,7 @@ export default function AgentsTab({ form, setForm, onSave, onSettingsChanged, on
               </div>
               <div className="model-row-actions">
                 {active ? (
-                  <button className="mini-button" disabled={busy} onClick={deactivate}>
+                  <button className="mini-button" disabled={busy} onClick={deactivate} aria-label="Deactivate agent">
                     <Check size={11} /> active — clear
                   </button>
                 ) : (

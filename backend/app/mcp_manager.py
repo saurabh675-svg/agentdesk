@@ -324,17 +324,32 @@ class MCPManager:
 
                 settings = load_settings()
                 workspace = settings.get("workspace", str(Path.home()))
-                args = [str(arg).replace("{workspace}", workspace) for arg in server.get("args", [])]
-                command = server.get("command", "")
-                resolved = _find_command(command)
-                if not resolved:
-                    raise RuntimeError(
-                        f"Command '{command}' not found. Install Node.js (npx) or uv (uvx) first."
-                    )
-                env = {**(server.get("env") or {})}
-                env.pop("AGENTDESK_API_TOKEN", None)
-                params = StdioServerParameters(command=resolved, args=args, env=env)
-                read, write = await stack.enter_async_context(stdio_client(params))
+                url = server.get("url") or ""
+                if url:
+                    headers = {**(server.get("headers") or {})}
+                    for k, v in (server.get("env") or {}).items():
+                        if v and str(v).strip():
+                            headers[k.replace("_", "-").lower()] = str(v).strip()
+                    if url.rstrip("/").endswith("/sse"):
+                        from mcp.client.sse import sse_client
+                        read, write = await stack.enter_async_context(sse_client(url, headers))
+                    else:
+                        from mcp.client.streamable_http import streamable_http_client
+                        read, write, _ = await stack.enter_async_context(
+                            streamable_http_client(url, headers)
+                        )
+                else:
+                    args = [str(arg).replace("{workspace}", workspace) for arg in server.get("args", [])]
+                    command = server.get("command", "")
+                    resolved = _find_command(command)
+                    if not resolved:
+                        raise RuntimeError(
+                            f"Command '{command}' not found. Install Node.js (npx) or uv (uvx) first."
+                        )
+                    env = {**(server.get("env") or {})}
+                    env.pop("AGENTDESK_API_TOKEN", None)
+                    params = StdioServerParameters(command=resolved, args=args, env=env)
+                    read, write = await stack.enter_async_context(stdio_client(params))
                 session = await stack.enter_async_context(ClientSession(read, write))
                 await asyncio.wait_for(session.initialize(), timeout=180)
                 listed = await asyncio.wait_for(session.list_tools(), timeout=60)

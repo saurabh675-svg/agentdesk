@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "AgentDesk API",
-    "version": "0.5.0",
+    "version": "0.7.0",
     "description": "Loopback HTTP/WebSocket API for the AgentDesk desktop app. Authenticate with the desktop bearer token (or the browser SDK token on /api/browser/sdk/* and /api/browser/bidi/*)."
   },
   "paths": {

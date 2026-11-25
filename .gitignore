@@ -28,3 +28,4 @@ native/cdp_helper/*.exe
 .pilot/
 native/agentdesk_core/target/
 native/agentdeskctl/target/
+fastembed_cache/

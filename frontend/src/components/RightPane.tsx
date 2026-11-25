@@ -387,7 +387,7 @@ export default function RightPane(props: Props) {
       {props.tab === "screen" && (
         <>
           <div className="browser-toolbar">
-            <button className="mini-button" onClick={capture} disabled={screenBusy}>
+            <button className="mini-button" onClick={capture} disabled={screenBusy} aria-label="Capture screen">
               <Camera size={12} /> {screenBusy ? "capturing…" : "capture screen"}
             </button>
             <span className="screen-size">
@@ -444,7 +444,7 @@ export default function RightPane(props: Props) {
                 <FileText size={13} />
                 <span title={props.openFile.path}>{fileName}</span>
                 <span className="file-path">{props.openFile.path}</span>
-                <button className="icon-button" onClick={props.onCloseFile} title="Close file">
+                <button className="icon-button" onClick={props.onCloseFile} title="Close file" aria-label="Close file">
                   <X size={14} />
                 </button>
               </div>

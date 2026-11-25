@@ -292,3 +292,11 @@ See `docs/UPDATES.md` for the immediate list and
 
 ### Changed
 - Version 0.4.0 → **0.7.0** across `package.json`, `backend/app/main.py`, diagnostics, telemetry, SDK route, Rust crates and manifests.
+
+### Follow-up (same 0.7.0 line)
+- **Agent split step 2:** `AgentRunner` → `agent_runner.py`; `agent.py` is now a **15-line facade** (acceptance <900 LOC met). `agent.py` + `agent_runner.py` import-identical (89 tools verified).
+- **MCP 2.x HTTP/SSE transport:** `mcp_manager.py` now supports `url`-configured servers (Streamable HTTP + SSE with env→header mapping); stdio unchanged.
+- **Vector stack installed:** `sqlite-vec 0.1.9`, `duckdb 2.0.1`, `fastembed 0.9.1` + `onnxruntime` via `uv pip`. FastEmbed model download is blocked by the sandbox HF cache, so `brain_vector` uses the hash-embed fallback (384-dim, hybrid search verified); DuckDB is live with SQLite fallback.
+- **Telemetry waterfall UI + i18n:** span bars under the engine bar, `en/es/hi` locale switch in Settings (Sidebar “New chat” wired).
+- **Hermas tools wired to the agent:** `schedule_create_nl`, `skill_propose`, `skill_approve`, `skill_rollback` added as first-class tools.
+- **A11y gate green:** 8 icon-only buttons labelled, `scripts/a11y_check.mjs` → 0 critical. `agentdeskctl` (Rust) `cargo check` passes.

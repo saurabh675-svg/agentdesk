@@ -145,7 +145,7 @@ export default function TerminalView({ sessionId }: Props) {
         <span className={`terminal-state ${state}`}>{state}</span>
         {error && <span className="terminal-error">{error}</span>}
         <span className="right-spacer" />
-        <button className="mini-button" onClick={restart} title="Restart terminal">
+        <button aria-label="Restart terminal" className="mini-button" onClick={restart} title="Restart terminal">
           <RotateCw size={11} /> restart
         </button>
       </div>

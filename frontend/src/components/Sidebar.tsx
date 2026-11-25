@@ -1,3 +1,4 @@
+import { t } from "../i18n"
 import { useState } from "react"
 import {
   ChevronDown,
@@ -128,8 +129,8 @@ export default function Sidebar(props: Props) {
         </div>
       </div>
 
-      <button className="new-chat" onClick={props.onNewSession}>
-        <Plus size={14} /> New chat
+      <button aria-label="New chat" className="new-chat" onClick={props.onNewSession}>
+        <Plus size={14} /> {t("newChat")}
       </button>
 
       <div className="section-label">Sessions</div>

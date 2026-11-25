@@ -120,7 +120,7 @@ export default function LocalModelsTab({ onError, onNotice, onActivated }: Props
     <div className="local-models">
       <div className="section-head">
         <h3>Local llama.cpp models</h3>
-        <button className="mini-button" onClick={load} title="Refresh">
+        <button className="mini-button" onClick={load} title="Refresh" aria-label="Refresh">
           <RefreshCw size={11} />
         </button>
       </div>

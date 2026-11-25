@@ -7,6 +7,7 @@ import RightPane from "./components/RightPane"
 import SettingsModal from "./components/SettingsModal"
 import FloatingPet from "./components/FloatingPet"
 import { api, socketProtocols, wsUrl } from "./api"
+import { t as tr } from "./i18n"
 import type {
   ApprovalRequest,
   Attachment,
@@ -725,6 +726,23 @@ export default function App() {
             </span>
           ))}
         </div>
+
+        {spans.length > 0 ? (
+          <div className="waterfall" aria-label="Telemetry waterfall (last spans)">
+            {spans.map((sp, i) => {
+              const ms = sp.duration_ms ?? sp.durationMs ?? 1
+              const max = Math.max(1, ...spans.map((x) => x.duration_ms ?? x.durationMs ?? 1))
+              const w = Math.min(100, Math.max(1, (ms / max) * 100))
+              return (
+                <div key={i} className="span-row" title={`${sp.name} ${Math.round(ms)}ms`}>
+                  <span className="span-name">{sp.name}</span>
+                  <span className="span-bar" style={{ width: `${w}%` }} />
+                  <span>{Math.round(ms)}ms</span>
+                </div>
+              )
+            })}
+          </div>
+        ) : null}
 
         {/* Compact toast */}
         {compactToast && <div className="compact-toast">{compactToast}</div>}

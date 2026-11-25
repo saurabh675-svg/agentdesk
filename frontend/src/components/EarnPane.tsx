@@ -280,7 +280,7 @@ export default function EarnPane({ agentBusy, onAskAgent, onOpenBrowser }: Props
         </div>
         <div className="earn-controls">
           <button
-            className={`earn-toggle ${overview?.autopilot ? "on" : ""}`}
+            className={`earn-toggle ${overview?.autopilot ? "on" : ""}`} aria-label="Toggle autopilot"
             onClick={toggleAutopilot}
             disabled={busy === "autopilot"}
             title="Autopilot drafts local assets only; it never sends or spends"

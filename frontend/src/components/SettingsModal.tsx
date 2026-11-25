@@ -19,6 +19,7 @@ import {
   Zap,
 } from "lucide-react"
 import { api } from "../api"
+import { getLocale, setLocale } from "../i18n"
 import type { Automation, MCPPreset, MCPServer, OpenRouterModel, Settings, SkillInfo } from "../types"
 import LocalModelsTab from "./LocalModelsTab"
 import AgentsTab from "./AgentsTab"
@@ -586,7 +587,7 @@ export default function SettingsModal(props: Props) {
       <div className="modal wide">
         <div className="modal-head">
           <h2>Settings</h2>
-          <button className="icon-button" onClick={props.onClose}>
+          <button className="icon-button" onClick={props.onClose} aria-label="Close settings">
             <X size={16} />
           </button>
         </div>
@@ -758,6 +759,14 @@ export default function SettingsModal(props: Props) {
                   value={form.max_steps}
                   onChange={(event) => set("max_steps", Number(event.target.value))}
                 />
+              </label>
+              <label className="field">
+                <span>Language / Idioma / भाषा</span>
+                <select value={getLocale()} onChange={(e) => setLocale(e.target.value as "en" | "es" | "hi")}>
+                  <option value="en">English</option>
+                  <option value="es">Español</option>
+                  <option value="hi">हिन्दी</option>
+                </select>
               </label>
               <label className="field">
                 <span>Provider</span>
@@ -1160,7 +1169,7 @@ export default function SettingsModal(props: Props) {
                 placeholder="https://raw.githubusercontent.com/…/SKILL.md"
                 spellCheck={false}
               />
-              <button className="btn allow" onClick={installSkill} disabled={busy || !skillUrl.trim()}>
+              <button className="btn allow" onClick={installSkill} disabled={busy || !skillUrl.trim()} aria-label="Install skill">
                 <Download size={13} /> Install from URL
               </button>
             </div>
@@ -1186,14 +1195,14 @@ export default function SettingsModal(props: Props) {
                   spellCheck={false}
                 />
                 <button
-                  className="btn"
+                  className="btn" aria-label="Scan skill pack"
                   onClick={scanSkillPack}
                   disabled={busy || !skillPackPath.trim()}
                 >
                   <Search size={13} /> Scan
                 </button>
                 <button
-                  className="btn allow"
+                  className="btn allow" aria-label="Import skill pack"
                   onClick={importSkillPack}
                   disabled={busy || !skillPackPath.trim()}
                 >
@@ -1267,7 +1276,7 @@ export default function SettingsModal(props: Props) {
                   />
                 </label>
                 <div className="inline-actions end">
-                  <button className="btn allow" onClick={addSkill} disabled={busy}>
+                  <button className="btn allow" aria-label="Add skill" onClick={addSkill} disabled={busy}>
                     <Check size={13} /> Save skill
                   </button>
                 </div>
@@ -1302,7 +1311,7 @@ export default function SettingsModal(props: Props) {
 
             <div className="section-label mcp-list-label">
               Configured servers
-              <button className="icon-button tiny" onClick={loadMcp} title="Refresh status">
+              <button className="icon-button tiny" onClick={loadMcp} title="Refresh status" aria-label="Refresh status">
                 <RefreshCw size={11} />
               </button>
             </div>
@@ -1392,7 +1401,7 @@ export default function SettingsModal(props: Props) {
                   <input value={customArgs} onChange={(event) => setCustomArgs(event.target.value)} />
                 </label>
                 <div className="inline-actions end">
-                  <button className="btn allow" onClick={addCustomMcp}>
+                  <button className="btn allow" aria-label="Add custom MCP server" onClick={addCustomMcp}>
                     <Plus size={13} /> Add server
                   </button>
                 </div>
