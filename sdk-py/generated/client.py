@@ -127,6 +127,18 @@ class AgentDeskClient:
     def get_api_browser_state(self) -> Any:
         return self._request("GET", "/api/browser/state")
 
+    def get_api_competitions(self) -> Any:
+        return self._request("GET", "/api/competitions")
+
+    def post_api_competitions(self, Body=None) -> Any:
+        return self._request("POST", "/api/competitions", Body=Body)
+
+    def post_api_competitions_name_checklist(self, name=None, Body=None) -> Any:
+        return self._request("POST", "/api/competitions/{name}/checklist", name=name, Body=Body)
+
+    def get_api_competitions_name_team(self, name=None) -> Any:
+        return self._request("GET", "/api/competitions/{name}/team", name=name)
+
     def post_api_computer_capture(self) -> Any:
         return self._request("POST", "/api/computer/capture")
 
@@ -150,6 +162,24 @@ class AgentDeskClient:
 
     def get_api_diagnostics_spans(self, limit=None) -> Any:
         return self._request("GET", "/api/diagnostics/spans", limit=limit)
+
+    def post_api_downloads_scan(self, force=None) -> Any:
+        return self._request("POST", "/api/downloads/scan", force=force)
+
+    def post_api_earnings_plus_export_doc(self, Body=None) -> Any:
+        return self._request("POST", "/api/earnings-plus/export-doc", Body=Body)
+
+    def get_api_earnings_plus_funds(self, owner=None) -> Any:
+        return self._request("GET", "/api/earnings-plus/funds", owner=owner)
+
+    def get_api_earnings_plus_funds_name_guidance(self, name=None, owner=None) -> Any:
+        return self._request("GET", "/api/earnings-plus/funds/{name}/guidance", name=name, owner=owner)
+
+    def get_api_earnings_plus_projects(self) -> Any:
+        return self._request("GET", "/api/earnings-plus/projects")
+
+    def post_api_earnings_plus_projects(self, Body=None) -> Any:
+        return self._request("POST", "/api/earnings-plus/projects", Body=Body)
 
     def post_api_earnings_autopilot_tick(self) -> Any:
         return self._request("POST", "/api/earnings/autopilot/tick")
