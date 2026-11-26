@@ -111,7 +111,7 @@ export default function Sidebar(props: Props) {
             {props.wsState === "open" ? "connected" : props.wsState}
           </span>
         </div>
-        <button className="icon-button" onClick={props.onOpenSettings} title="Settings" aria-label="Open settings">
+        <button className="icon-button" onClick={props.onOpenSettings} title={t("settings")} aria-label={t("settings")}>
           <SettingsIcon size={15} />
         </button>
       </div>

@@ -300,3 +300,10 @@ See `docs/UPDATES.md` for the immediate list and
 - **Telemetry waterfall UI + i18n:** span bars under the engine bar, `en/es/hi` locale switch in Settings (Sidebar “New chat” wired).
 - **Hermas tools wired to the agent:** `schedule_create_nl`, `skill_propose`, `skill_approve`, `skill_rollback` added as first-class tools.
 - **A11y gate green:** 8 icon-only buttons labelled, `scripts/a11y_check.mjs` → 0 critical. `agentdeskctl` (Rust) `cargo check` passes.
+
+### Leftovers (2026-11-26)
+- **Rust 0.7 tune:** direct `Vec<Node>` deserialization (no generic `Value` tree), FNV-1a `snapshot_hash` + unchanged fast-path in `diff()` (instant no-op on unchanged polls; changed-payload speedup ~1.2× — JSON parse dominates, 10× needs binary snapshot format). Rebuilt `.pyd`, `bench_native.py` OK (2 change entries agree).
+- **Real vectors:** `HF_HOME=.tmp/hf-cache` + `HF_HUB_DISABLE_XET=1` — FastEmbed `all-MiniLM-L6-v2-onnx` downloaded (5 files) and `embed()` returns real 384-dim vectors; `/api/brain/search/hybrid` verified live.
+- **MCP 2.x:** `MCPManager.list_resources()/list_prompts()` (best-effort over live sessions; SDK supports `list_resources`/`list_prompts`/`get_prompt`/`read_resource`).
+- **i18n:** Sidebar Settings, ChatPane Send/placeholder, `App.tsx` session titles now `t()`-wired; Settings locale switch persists.
+- **`agentdeskctl`:** full release build `10.5 MB` (`cargo build --release`, 5m11s) — `health`/`sessions` verified against live app (`version 0.7.0`).

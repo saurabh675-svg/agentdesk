@@ -86,7 +86,7 @@ def backend_info() -> dict:
         "backend": "rust" if module is not None else "python",
         "version": getattr(module, "__version__", "") if module else "",
         "error": _LOAD_ERROR,
-        "features": ["dom_diff", "content_ref", "scrub", "count_tokens"],
+        "features": ["dom_diff", "content_ref", "scrub", "count_tokens", "snapshot_hash"],
     }
 
 

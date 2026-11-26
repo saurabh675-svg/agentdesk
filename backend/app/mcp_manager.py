@@ -396,6 +396,34 @@ class MCPManager:
                     self._states[server["id"]] = {"status": "disabled", "error": None, "tools": []}
         return self.status()
 
+    async def list_resources(self, server_id: str) -> list[dict]:
+        """MCP 2.x: resources discovery (best-effort; empty when unsupported)."""
+        session = self._sessions.get(server_id)
+        if session is None or not hasattr(session, "list_resources"):
+            return []
+        try:
+            out = await asyncio.wait_for(session.list_resources(), timeout=30)
+            return [
+                {"uri": str(getattr(r, "uri", "")), "name": str(getattr(r, "name", "")), "description": str(getattr(r, "description", "") or "")}
+                for r in (getattr(out, "resources", []) or [])
+            ]
+        except Exception:
+            return []
+
+    async def list_prompts(self, server_id: str) -> list[dict]:
+        """MCP 2.x: prompts discovery (best-effort; empty when unsupported)."""
+        session = self._sessions.get(server_id)
+        if session is None or not hasattr(session, "list_prompts"):
+            return []
+        try:
+            out = await asyncio.wait_for(session.list_prompts(), timeout=30)
+            return [
+                {"name": str(getattr(p, "name", "")), "description": str(getattr(p, "description", "") or "")}
+                for p in (getattr(out, "prompts", []) or [])
+            ]
+        except Exception:
+            return []
+
     async def call_tool(self, name: str, arguments: dict) -> str:
         info = self._tools.get(name)
         if not info:

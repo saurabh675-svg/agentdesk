@@ -178,7 +178,7 @@ export default function App() {
         setBrowser(browserData)
         let list = sessionList
         if (list.length === 0) {
-          const created = await api.post<Session>("/api/sessions", { title: "New chat" })
+          const created = await api.post<Session>("/api/sessions", { title: tr("newChat") })
           list = [created]
         }
         setSessions(list)
@@ -517,7 +517,7 @@ export default function App() {
 
   const newSession = async () => {
     try {
-      const created = await api.post<Session>("/api/sessions", { title: "New chat" })
+      const created = await api.post<Session>("/api/sessions", { title: tr("newChat") })
       setSessions((current) => [created, ...current])
       setSessionId(created.id)
     } catch (err) {
@@ -533,7 +533,7 @@ export default function App() {
       if (id === sessionId) {
         if (remaining.length > 0) setSessionId(remaining[0].id)
         else {
-          const created = await api.post<Session>("/api/sessions", { title: "New chat" })
+          const created = await api.post<Session>("/api/sessions", { title: tr("newChat") })
           setSessions([created])
           setSessionId(created.id)
         }
@@ -681,7 +681,7 @@ export default function App() {
 
       <div className="chat-column">
         <ChatPane
-          sessionTitle={currentSession?.title ?? "New chat"}
+          sessionTitle={currentSession?.title ?? tr("newChat")}
           model={activeModel}
           workspaceName={baseName(workspace.path)}
           wsState={wsState}
@@ -824,7 +824,7 @@ export default function App() {
             />
             <div className="palette-list">
               {[
-                { label: "New chat", action: () => { newSession(); setPaletteOpen(false) } },
+                { label: tr("newChat"), action: () => { newSession(); setPaletteOpen(false) } },
                 { label: "Open settings", action: () => { setShowSettings(true); setPaletteOpen(false) } },
                 { label: "Tab: Browser", action: () => { setRightTab("browser"); setPaletteOpen(false) } },
                 { label: "Tab: Screen", action: () => { setRightTab("screen"); setPaletteOpen(false) } },

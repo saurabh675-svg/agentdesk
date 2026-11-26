@@ -1,3 +1,4 @@
+import { t } from "../i18n"
 import { useEffect, useRef, useState } from "react"
 import Markdown from "react-markdown"
 import remarkGfm from "remark-gfm"
@@ -588,7 +589,7 @@ export default function ChatPane(props: Props) {
               </button>
             </>
           ) : (
-            <button className="send" onClick={submit} disabled={!text.trim()} title="Send" aria-label="Send message">
+            <button className="send" onClick={submit} disabled={!text.trim()} title={t("send")} aria-label={t("send")}>
               <Send size={15} />
             </button>
           )}

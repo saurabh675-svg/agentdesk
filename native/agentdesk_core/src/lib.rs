@@ -12,14 +12,21 @@ use regex::Regex;
 use serde_json::Value;
 
 /// A node of the simplified DOM tree used for diffing.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, serde::Deserialize)]
 pub struct Node {
+    #[serde(default = "default_tag")]
     pub tag: String,
+    #[serde(default)]
     pub role: String,
+    #[serde(default)]
     pub name: String,
+    #[serde(default)]
     pub value: String,
+    #[serde(default)]
     pub children: Vec<Node>,
 }
+
+fn default_tag() -> String { "node".to_string() }
 
 impl Node {
     /// Stable identity of a node: tag + role + accessible name.
@@ -55,11 +62,22 @@ pub struct DiffEntry {
 }
 
 /// Build a simplified DOM tree from an a11y/DOM snapshot JSON payload.
+/// Fast path deserializes directly into `Vec<Node>` (no generic `Value` tree);
+/// falls back to the tolerant `collect` for malformed/partial nodes.
 pub fn parse_tree(payload: &str) -> Result<Vec<Node>, String> {
+    if let Ok(nodes) = serde_json::from_str::<Vec<Node>>(payload) {
+        return Ok(nodes);
+    }
     let value: Value = serde_json::from_str(payload).map_err(|e| e.to_string())?;
     let mut out = Vec::new();
     collect(&value, &mut out);
     Ok(out)
+}
+
+/// Fast snapshot hash: FNV-1a over the raw bytes (no JSON parse).
+/// Python uses this to skip the diff entirely when the page is unchanged.
+pub fn snapshot_hash(payload: &str) -> u64 {
+    fnv1a64(payload.as_bytes())
 }
 
 fn collect(value: &Value, out: &mut Vec<Node>) {
@@ -122,6 +140,9 @@ pub fn content_ref(node: &Node) -> String {
 ///
 /// Returns a JSON array of `DiffEntry` objects.
 pub fn diff(old_payload: &str, new_payload: &str) -> Result<Vec<DiffEntry>, String> {
+    if snapshot_hash(old_payload) == snapshot_hash(new_payload) {
+        return Ok(Vec::new());
+    }
     let old = parse_tree(old_payload)?;
     let new = parse_tree(new_payload)?;
 
@@ -131,24 +152,14 @@ pub fn diff(old_payload: &str, new_payload: &str) -> Result<Vec<DiffEntry>, Stri
     flatten(&new, &mut new_index);
 
     let mut entries: Vec<DiffEntry> = Vec::new();
-
     for (key, (node, hash)) in &new_index {
         match old_index.get(key) {
-            None => entries.push(DiffEntry {
-                kind: "added".to_string(),
-                ref_id: content_ref(node),
-                name: node.name.clone(),
-                tag: node.tag.clone(),
-            }),
-            Some((_, old_hash)) if old_hash != hash => entries.push(DiffEntry {
-                kind: "changed".to_string(),
-                ref_id: content_ref(node),
-                name: node.name.clone(),
-                tag: node.tag.clone(),
-            }),
+            None => entries.push(DiffEntry { kind: "added".to_string(), ref_id: content_ref(node), name: node.name.clone(), tag: node.tag.clone() }),
+            Some((_, old_hash)) if old_hash != hash => entries.push(DiffEntry { kind: "changed".to_string(), ref_id: content_ref(node), name: node.name.clone(), tag: node.tag.clone() }),
             _ => {}
         }
     }
+
     for (key, (node, _)) in &old_index {
         if !new_index.contains_key(key) {
             entries.push(DiffEntry {
@@ -240,6 +251,9 @@ mod python {
     }
 
     #[pyfunction]
+    fn snapshot_hash_py(payload: &str) -> u64 { snapshot_hash(payload) }
+
+    #[pyfunction]
     fn scrub_py(text: &str) -> (String, usize) {
         scrub(text)
     }
@@ -261,6 +275,7 @@ mod python {
     #[pymodule]
     fn agentdesk_core(m: &Bound<'_, PyModule>) -> PyResult<()> {
         m.add_function(wrap_pyfunction!(diff_py, m)?)?;
+        m.add_function(wrap_pyfunction!(snapshot_hash_py, m)?)?;
         m.add_function(wrap_pyfunction!(scrub_py, m)?)?;
         m.add_function(wrap_pyfunction!(count_tokens_py, m)?)?;
         m.add_function(wrap_pyfunction!(content_ref_py, m)?)?;
