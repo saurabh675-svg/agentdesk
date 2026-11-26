@@ -38,9 +38,6 @@
 
 namespace {
 
-// --------------------------------------------------------------------------- //
-// Minimal JSON string escaping (we only ever build simple JSON).
-// --------------------------------------------------------------------------- //
 std::string json_escape(const std::string& in) {
     std::string out;
     out.reserve(in.size() + 16);
@@ -64,9 +61,6 @@ std::string json_escape(const std::string& in) {
     return out;
 }
 
-// --------------------------------------------------------------------------- //
-// SHA-1 + base64 (needed for the WebSocket handshake only).
-// --------------------------------------------------------------------------- //
 struct Sha1 {
     uint32_t h[5]{0x67452301u, 0xEFCDAB89u, 0x98BADCFEu, 0x10325476u, 0xC3D2E1F0u};
     uint8_t block[64]{};
@@ -114,7 +108,7 @@ struct Sha1 {
         while (block_len != 56) update(&zero, 1);
         uint8_t lenbuf[8];
         for (int i = 0; i < 8; ++i) lenbuf[i] = uint8_t(bits >> (56 - i * 8));
-        total -= 8; // length bytes are not part of the message
+        total -= 8;
         update(lenbuf, 8);
         for (int i = 0; i < 5; ++i) {
             out[i * 4 + 0] = uint8_t(h[i] >> 24);
@@ -150,9 +144,6 @@ std::string random_key() {
     return out;
 }
 
-// --------------------------------------------------------------------------- //
-// Tiny HTTP client (used once, to read /json/version or /json/list).
-// --------------------------------------------------------------------------- //
 int http_get(const std::string& host, int port, const std::string& path, std::string* body) {
     SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (sock == INVALID_SOCKET) return -1;
@@ -197,9 +188,6 @@ int http_get(const std::string& host, int port, const std::string& path, std::st
     return 0;
 }
 
-// --------------------------------------------------------------------------- //
-// WebSocket client (RFC 6455), text frames only.
-// --------------------------------------------------------------------------- //
 class WebSocket {
 public:
     bool connect(int port, const std::string& path) {
@@ -266,7 +254,7 @@ public:
         uint8_t mask[4];
         for (auto& m : mask) m = uint8_t(rand() & 0xff);
         for (int i = 0; i < 4; ++i) frame.push_back(mask[i]);
-        for (size_t i = 0; i < len; ++i) frame.push_back(uint8_t(payload[i] ^ mask[i % 4]);
+        for (size_t i = 0; i < len; ++i) frame.push_back(uint8_t(payload[i] ^ mask[i % 4]));
         return send(socket_, reinterpret_cast<const char*>(frame.data()), static_cast<int>(frame.size()), 0) > 0;
     }
 
@@ -313,9 +301,6 @@ private:
     SOCKET socket_{INVALID_SOCKET};
 };
 
-// --------------------------------------------------------------------------- //
-// CDP client: correlate requests with responses by id.
-// --------------------------------------------------------------------------- //
 class CdpClient {
 public:
     explicit CdpClient(WebSocket& socket) : socket_(socket) {}
