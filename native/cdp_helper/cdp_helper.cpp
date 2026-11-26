@@ -98,7 +98,8 @@ struct Sha1 {
     void update(const uint8_t* data, size_t len) {
         total += len;
         while (len > 0) {
-            size_t take = std::min(len, static_cast<size_t>(64) - block_len);
+            const size_t remaining = static_cast<size_t>(64) - block_len;
+            const size_t take = len < remaining ? len : remaining;
             std::memcpy(block + block_len, data, take);
             block_len += take; data += take; len -= take;
             if (block_len == 64) { process_block(block); block_len = 0; }
@@ -167,8 +168,6 @@ int http_get(const std::string& host, int port, const std::string& path, std::st
                        " HTTP/1.1\r\nHost: " + host +
                        "\r\nUser-Agent: agentdesk-cdp-helper/0.5\r\nAccept: */*\r\n\r\n";
     send(sock, req.data(), static_cast<int>(req.size()), 0);
-    // Chrome's DevTools HTTP server keeps the connection alive, so read exactly
-    // Content-Length bytes instead of waiting for a close.
     DWORD timeout_ms = 8000;
     setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<char*>(&timeout_ms), sizeof(timeout_ms));
     char buffer[8192];
@@ -189,9 +188,7 @@ int http_get(const std::string& host, int port, const std::string& path, std::st
             }
         }
         if (header_end != std::string::npos && content_length > 0 &&
-            raw.size() >= header_end + 4 + content_length) {
-            break;
-        }
+            raw.size() >= header_end + 4 + content_length) break;
     }
     closesocket(sock);
     auto split = raw.find("\r\n\r\n");
@@ -234,7 +231,6 @@ public:
         }
         if (header.find("101") == std::string::npos) return false;
 
-        // Verify the accept key so we fail fast on a wrong endpoint.
         Sha1 sha;
         std::string magic = key + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
         sha.update(reinterpret_cast<const uint8_t*>(magic.data()), magic.size());
@@ -254,7 +250,7 @@ public:
 
     bool send_text(const std::string& payload) {
         std::vector<uint8_t> frame;
-        frame.push_back(0x81); // FIN + text
+        frame.push_back(0x81);
         const size_t len = payload.size();
         uint8_t mask_bit = 0x80;
         if (len < 126) {
@@ -270,11 +266,10 @@ public:
         uint8_t mask[4];
         for (auto& m : mask) m = uint8_t(rand() & 0xff);
         for (int i = 0; i < 4; ++i) frame.push_back(mask[i]);
-        for (size_t i = 0; i < len; ++i) frame.push_back(uint8_t(payload[i] ^ mask[i % 4));
+        for (size_t i = 0; i < len; ++i) frame.push_back(uint8_t(payload[i] ^ mask[i % 4]);
         return send(socket_, reinterpret_cast<const char*>(frame.data()), static_cast<int>(frame.size()), 0) > 0;
     }
 
-    // Read one complete text frame.
     bool recv_text(std::string* out) {
         uint8_t header[2];
         if (!read_exact(header, 2)) return false;
@@ -298,8 +293,8 @@ public:
         std::string payload;
         payload.resize(static_cast<size_t>(len));
         if (len > 0 && !read_exact(reinterpret_cast<uint8_t*>(&payload[0]), static_cast<size_t>(len))) return false;
-        if (opcode == 0x8) return false; // close
-        if (opcode == 0x9) { send_text(payload); return recv_text(out); } // ping -> pong
+        if (opcode == 0x8) return false;
+        if (opcode == 0x9) { send_text(payload); return recv_text(out); }
         *out = payload;
         return true;
     }
@@ -335,7 +330,6 @@ public:
         for (int guard = 0; guard < 5000; ++guard) {
             std::string frame;
             if (!socket_.recv_text(&frame)) return false;
-            // A response contains "id":<our id>; events do not.
             const std::string id_key = "\"id\":" + std::to_string(id);
             auto pos = frame.find(id_key);
             if (pos == std::string::npos) continue;
@@ -367,7 +361,6 @@ std::string http_json(const std::string& path, int port) {
     return body;
 }
 
-// Extract the webSocketDebuggerUrl for the first page target.
 std::string find_debugger_url(const std::string& json, int port) {
     const std::string key = "\"webSocketDebuggerUrl\": \"";
     auto pos = json.find(key);
@@ -376,7 +369,6 @@ std::string find_debugger_url(const std::string& json, int port) {
     auto end = json.find('"', pos);
     if (end == std::string::npos) return {};
     std::string url = json.substr(pos, end - pos);
-    // ws://127.0.0.1:PORT/devtools/page/ID -> /devtools/page/ID
     auto slash = url.find('/', url.find("://") + 3);
     if (slash != std::string::npos) return url.substr(slash);
     return {};
@@ -465,10 +457,9 @@ int main(int argc, char** argv) {
                       type, x, y, action == "doubleclick" ? 2 : 1);
         if (!cdp.call("Input.dispatchMouseEvent", params, &result)) { socket.close(); WSACleanup(); return 2; }
         if (action != "move") {
-            const char* release = action == "doubleclick" ? "mouseReleased" : "mouseReleased";
             std::snprintf(params, sizeof(params),
-                          "{\"type\":\"%s\",\"x\":%g,\"y\":%g,\"button\":\"left\",\"clickCount\":%d}",
-                          release, x, y, action == "doubleclick" ? 2 : 1);
+                          "{\"type\":\"mouseReleased\",\"x\":%g,\"y\":%g,\"button\":\"left\",\"clickCount\":%d}",
+                          x, y, action == "doubleclick" ? 2 : 1);
             cdp.call("Input.dispatchMouseEvent", params, &result);
         }
     } else if (action == "type") {
@@ -492,7 +483,6 @@ int main(int argc, char** argv) {
             WSACleanup();
             return 2;
         }
-        // Pull "data":"<base64>" out of the result.
         auto data_pos = result.find("\"data\":\"");
         if (data_pos != std::string::npos) {
             data_pos += 8;
@@ -504,7 +494,6 @@ int main(int argc, char** argv) {
             if (file) {
                 static const char* tbl = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
                 int buffer = 0, bits = 0;
-                size_t out_len = 0;
                 std::vector<uint8_t> bytes;
                 bytes.reserve(b64.size() * 3 / 4);
                 for (size_t i = 0; i < b64.size(); ++i) {
@@ -520,9 +509,8 @@ int main(int argc, char** argv) {
                     }
                 }
                 fwrite(bytes.data(), 1, bytes.size(), file);
-                out_len = bytes.size();
                 fclose(file);
-                std::printf("{\"written\":\"%s\",\"bytes\":%zu}\n", path.c_str(), out_len);
+                std::printf("{\"written\":\"%s\",\"bytes\":%zu}\n", path.c_str(), bytes.size());
             }
         }
     } else {
