@@ -98,7 +98,7 @@ struct Sha1 {
     void update(const uint8_t* data, size_t len) {
         total += len;
         while (len > 0) {
-            size_t take = std::min(len, size_t(64) - block_len);
+            size_t take = std::min(len, static_cast<size_t>(64) - block_len);
             std::memcpy(block + block_len, data, take);
             block_len += take; data += take; len -= take;
             if (block_len == 64) { process_block(block); block_len = 0; }
@@ -164,8 +164,8 @@ int http_get(const std::string& host, int port, const std::string& path, std::st
         return -1;
     }
     std::string req = "GET " + path +
-                      " HTTP/1.1\r\nHost: " + host +
-                      "\r\nUser-Agent: agentdesk-cdp-helper/0.5\r\nAccept: */*\r\n\r\n";
+                       " HTTP/1.1\r\nHost: " + host +
+                       "\r\nUser-Agent: agentdesk-cdp-helper/0.5\r\nAccept: */*\r\n\r\n";
     send(sock, req.data(), static_cast<int>(req.size()), 0);
     // Chrome's DevTools HTTP server keeps the connection alive, so read exactly
     // Content-Length bytes instead of waiting for a close.
@@ -270,7 +270,7 @@ public:
         uint8_t mask[4];
         for (auto& m : mask) m = uint8_t(rand() & 0xff);
         for (int i = 0; i < 4; ++i) frame.push_back(mask[i]);
-        for (size_t i = 0; i < len; ++i) frame.push_back(uint8_t(payload[i] ^ mask[i % 4]));
+        for (size_t i = 0; i < len; ++i) frame.push_back(uint8_t(payload[i] ^ mask[i % 4));
         return send(socket_, reinterpret_cast<const char*>(frame.data()), static_cast<int>(frame.size()), 0) > 0;
     }
 
