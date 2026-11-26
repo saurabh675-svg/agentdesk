@@ -1,10 +1,11 @@
+import React from "react"
 import { Component, useCallback, useEffect, useRef, useState } from "react"
 import type { ErrorInfo, ReactNode } from "react"
 import { AlertTriangle, Info, Loader2, X, Zap, Terminal, Globe, Cpu, Settings2, RefreshCw } from "lucide-react"
 import Sidebar from "./components/Sidebar"
 import ChatPane from "./components/ChatPane"
 import RightPane from "./components/RightPane"
-import SettingsModal from "./components/SettingsModal"
+const SettingsModal = React.lazy(() => import("./components/SettingsModal"))
 import FloatingPet from "./components/FloatingPet"
 import { api, socketProtocols, wsUrl } from "./api"
 import { t as tr } from "./i18n"
@@ -786,12 +787,14 @@ export default function App() {
       </div>
 
       {showSettings && (
+        <React.Suspense fallback={null}>
         <SettingsModal
           settings={settings}
           onClose={() => setShowSettings(false)}
           onSave={saveSettings}
           onSettingsChanged={setSettings}
         />
+        </React.Suspense>
       )}
 
       {notice && (

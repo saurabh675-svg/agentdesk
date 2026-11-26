@@ -16,6 +16,7 @@ import {
   TrendingUp,
 } from "lucide-react"
 import { api } from "../api"
+import EarnPlus from "./EarnPlus"
 import type {
   EarningBrief,
   EarningOpportunity,
@@ -325,6 +326,8 @@ export default function EarnPane({ agentBusy, onAskAgent, onOpenBrowser }: Props
           {error}
         </div>
       )}
+
+      <EarnPlus />
 
       <section className="earn-section">
         <div className="earn-section-head">

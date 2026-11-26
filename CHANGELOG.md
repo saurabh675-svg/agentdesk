@@ -307,3 +307,10 @@ See `docs/UPDATES.md` for the immediate list and
 - **MCP 2.x:** `MCPManager.list_resources()/list_prompts()` (best-effort over live sessions; SDK supports `list_resources`/`list_prompts`/`get_prompt`/`read_resource`).
 - **i18n:** Sidebar Settings, ChatPane Send/placeholder, `App.tsx` session titles now `t()`-wired; Settings locale switch persists.
 - **`agentdeskctl`:** full release build `10.5 MB` (`cargo build --release`, 5m11s) — `health`/`sessions` verified against live app (`version 0.7.0`).
+
+### Earn+ global (2026-11-26)
+- **Auto-discovery (Phase 2):** `autoload.py` — on boot, merges `mcp-*.json` from `~/Downloads` into MCP config (idempotent) and previews new skill packs (install stays gated).
+- **Downloads → brain (Phase 4):** `downloads_ingest.py` — scans `~/Downloads` (recent 500, <20 MB), stdlib parsers for txt/md/html/docx/xlsx/pptx/pdf(pypdf), sha-based manifest, brain notes chunked. Live: 40+ files indexed (PDF/DOCX/PPTX verified).
+- **Earn+ Competitions (Phase 5):** `competitions.py` + `/api/competitions` (seed 5: FOSS4G, Geospatial, Dr. Wu, Nvidia, Earth Day), team plan `[researcher→doc-writer→code-reviewer→formatter→submission-pack]`, checklist API. No auto-submit.
+- **Earn+ Funds & Consultancy (Phase 6):** `funds.py` + `/api/earnings-plus` — 5 funds (NSF/ESA/UNDP/ASCE/Maxar), owner-type fit + next-steps guidance, consultancy projects, `export-doc` (python-docx when present, else plain formatted text).
+- **UI:** `EarnPlus.tsx` (Competitions/Funds sub-tabs, owner filter, team plan, checklist, guidance) inside `EarnPane`; `SettingsModal` lazy-loaded. OpenAPI **132 ops** (was 122).

@@ -12,6 +12,7 @@ from .db import create_session, init_db
 from .diagnostics import agentdesk_log
 from .engine import llama_local
 from .mcp_manager import mcp_manager
+from . import autoload
 from .routes import (
     approvals_route,
     automations_route,
@@ -36,6 +37,9 @@ from .routes import (
     brain_vector_route,
     automations_nl_route,
     skills_evolution_route,
+    competitions_route,
+    funds_route,
+    downloads_route,
     sessions,
     settings_route,
     sandbox_route,
@@ -139,6 +143,14 @@ async def lifespan(_app: FastAPI):
         seeded = skills_import.seed_bundled_skills()
         for item in seeded.get("imported", []):
             agentdesk_log("info", "skills.seeded", name=item.get("name"), source=item.get("source"))
+    # Phase 2 + 4 boot automation: discover MCP/skill packs + index Downloads.
+    with suppress(Exception):
+        mcp_added = autoload.apply_mcp_servers()
+        if mcp_added.get("added"):
+            agentdesk_log("info", "mcp.discovered", added=mcp_added["added"])
+    with suppress(Exception):
+        from . import downloads_ingest as _dl
+        await asyncio.to_thread(_dl.scan)
     agentdesk_log("info", "app.start", version=app.version)
     # Start the always-on local llama.cpp model server (non-fatal - the cloud
     # gateways still work; the local route retries via `ensure()` when needed).
@@ -225,6 +237,9 @@ app.include_router(mcp_server_route.router, prefix="/api/mcp-server", tags=["mcp
 app.include_router(brain_vector_route.router, prefix="/api/brain", tags=["brain-vector"])
 app.include_router(automations_nl_route.router, prefix="/api/automations", tags=["automations-nl"])
 app.include_router(skills_evolution_route.router, prefix="/api/extensions/skills/evolution", tags=["skills-evolution"])
+app.include_router(competitions_route.router, prefix="/api/competitions", tags=["competitions"])
+app.include_router(funds_route.router, prefix="/api/earnings-plus", tags=["funds"])
+app.include_router(downloads_route.router, prefix="/api/downloads", tags=["downloads"])
 
 
 @app.get("/api/health")
