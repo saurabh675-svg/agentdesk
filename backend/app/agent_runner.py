@@ -213,6 +213,7 @@ class AgentRunner:
         headers = {"Accept": "application/vnd.github+json", "User-Agent": "agentdesk"}
         if token:
             headers["Authorization"] = f"Bearer {token}"
+        response = None
         try:
             async with httpx.AsyncClient(timeout=30.0) as client:
                 response = await client.get(
@@ -228,7 +229,7 @@ class AgentRunner:
             return f"Pull requests in {repo} (latest first):\n" + "\n".join(lines)
         except Exception as exc:
             detail = str(exc)
-            if response.status_code == 403 and not token:
+            if response is not None and response.status_code == 403 and not token:
                 detail += ". Set a GitHub token (Settings → General → GitHub token) for higher rate limits."
             return f"GitHub PR summary failed: {detail[:400]}"
 
@@ -266,7 +267,7 @@ class AgentRunner:
             "cwd": os.getcwd(),
         }
         try:
-            disk = os.path.disk_usage("C:\\")
+            disk = shutil.disk_usage(os.getcwd())
             info["disk"] = {"total": disk.total, "used": disk.used, "free": disk.free}
         except Exception:
             pass

@@ -62,7 +62,12 @@ async def _automation_send(_payload: dict) -> None:
 
 async def _automation_scheduler(stop: asyncio.Event) -> None:
     while not stop.is_set():
-        jobs = automations.due_automations(limit=1)
+        try:
+            jobs = automations.due_automations(limit=1)
+        except Exception as exc:
+            agentdesk_log("error", "automation.scheduler.poll_failed", error=str(exc)[:400])
+            await asyncio.sleep(10)
+            continue
         if jobs:
             job = jobs[0]
             if job.get("status") != "active":
@@ -112,16 +117,16 @@ async def _earnings_scheduler(stop: asyncio.Event) -> None:
     while not stop.is_set():
         try:
             await asyncio.to_thread(earnings.autopilot_tick)
-        except Exception:
-            pass
+        except Exception as exc:
+            agentdesk_log("error", "earnings.autopilot_tick.failed", error=str(exc)[:400])
         # Periodic live radar refresh using default queries
         now = time.time()
         if now - _last_radar >= _radar_interval:
             try:
                 await earnings.radar(query="remote freelance automation AI 2026 earn online")
                 _last_radar = time.time()
-            except Exception:
-                pass
+            except Exception as exc:
+                agentdesk_log("error", "earnings.radar.failed", error=str(exc)[:400])
         await asyncio.sleep(300)
 
 
@@ -187,7 +192,7 @@ async def lifespan(_app: FastAPI):
         earnings_stop.set()
         for task in (automation_task, earnings_task, model_task, browser_task):
             task.cancel()
-        await asyncio.gather(automation_task, earnings_task, model_task, return_exceptions=True)
+        await asyncio.gather(automation_task, earnings_task, model_task, browser_task, return_exceptions=True)
         await watchdog.stop()
         await mcp_manager.shutdown()
         terminal_manager.close_all()
